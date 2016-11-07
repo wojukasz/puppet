@@ -10,10 +10,10 @@ class profile::base {
     ensure => 'present',
   }
 
-  sudo::conf { 'sudo':
-    priority => 10,
-    content  => "%sudo ALL=(ALL)"
-  }
+  /* sudo::conf { 'sudo': */
+  /*   priority => 10, */
+  /*   content  => "%sudo ALL=(ALL)" */
+  /* } */
 
   user { 'alan':
     ensure         => present,
