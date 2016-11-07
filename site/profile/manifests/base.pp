@@ -1,6 +1,6 @@
 class profile::base {
   class {'::ntp': }
-  /* class {'::sudo': } */
+  class {'sudo': }
 
   package { 'fish':
     ensure => 'present'
@@ -8,6 +8,11 @@ class profile::base {
 
   group { 'sudo':
     ensure => 'present',
+  }
+
+  sudo::conf { 'sudo':
+    priority => 10,
+    content  => "%sudo ALL=(ALL)"
   }
 
   user { 'alan':
