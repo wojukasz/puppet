@@ -5,9 +5,12 @@ class profile::base {
     ensure => 'present'
   }
 
+  group { 'sudo':
+    ensure => 'present',
+  }
+
   user { 'alan':
     ensure         => present,
-    gid            => 'alan',
     groups         => [ 'sudo' ],
     home           => '/home/alan',
     managehome     => true,
