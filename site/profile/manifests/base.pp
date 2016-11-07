@@ -30,8 +30,8 @@ class profile::base {
     ensure => present,
   }
 
-  class { 'locales':
-    default_locale => 'en_GB.UTF-8',
-    locales        => ['en_GB.UTF-8 UTF-8'],
-   }
+  /* class { 'locales': */
+  /*   default_locale => 'en_GB.UTF-8', */
+  /*   locales        => ['en_GB.UTF-8 UTF-8'], */
+  /*  } */
 }
