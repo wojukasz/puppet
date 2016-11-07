@@ -4,3 +4,4 @@ forge 'forge.puppetlabs.com'
 mod 'puppetlabs/ntp', '4.1.0'
 mod 'puppetlabs/stdlib'
 mod "puppetlabs/firewall"
+mod "saz/locales"
