@@ -9,6 +9,7 @@ class profile::base {
     ensure         => present,
     gid            => 'alan',
     groups         => [ 'sudo' ],
+    home           => '/home/alan',
     managehome     => true,
     purge_ssh_keys => true,
   }
