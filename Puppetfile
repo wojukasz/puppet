@@ -6,3 +6,4 @@ mod 'puppetlabs/stdlib'
 mod "puppetlabs/firewall"
 mod "saz/locales"
 mod 'bashtoni-timezone', '1.0.0'
+mod 'garethr-docker', '5.3.0'
