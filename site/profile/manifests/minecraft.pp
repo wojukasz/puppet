@@ -13,61 +13,67 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/world':
+    file { '/srv/minecraft/direwolf20':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/logs':
+    file { '/srv/minecraft/direwolf20/world':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/config/':
+    file { '/srv/minecraft/direwolf20/logs':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/config/JourneyMapServer':
+    file { '/srv/minecraft/direwolf20/config/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/banned-ips.json':
+    file { '/srv/minecraft/config/direwolf20/JourneyMapServer':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0775',
+    } ->
+    file { '/srv/minecraft/direwolf20/banned-ips.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/banned-players.json':
+    file { '/srv/minecraft/direwolf20/banned-players.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/ops.json':
+    file { '/srv/minecraft/direwolf20/ops.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/usercache.json':
+    file { '/srv/minecraft/direwolf20/usercache.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/whitelist.json':
+    file { '/srv/minecraft/direwolf20/whitelist.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/server.properties':
+    file { '/srv/minecraft/direwolf20/server.properties':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
