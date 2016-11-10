@@ -2,8 +2,7 @@ class profile::minecraft {
     class {'docker':
         version => 'latest',
         docker_users => ['alan'],
-    }
-
+    } ->
     user { 'minecraft':
         ensure => present,
         system => true,
@@ -73,8 +72,7 @@ class profile::minecraft {
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
-    }
-
+    }->
     file {'/usr/lib/systemd/system/direwolf20.service':
         ensure => file,
         owner => 'root',
