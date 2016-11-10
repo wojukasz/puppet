@@ -37,7 +37,7 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/config/direwolf20/JourneyMapServer':
+    file { '/srv/minecraft/direwolf20/config/JourneyMapServer':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
