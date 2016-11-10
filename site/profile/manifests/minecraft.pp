@@ -8,6 +8,12 @@ class profile::minecraft {
         ensure => present,
         system => true,
     } ->
+    file { '/srv/minecraft/':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0775',
+    } ->
     file { '/srv/minecraft/world':
         ensure => directory,
         owner => 'minecraft',
