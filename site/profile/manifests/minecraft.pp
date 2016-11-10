@@ -74,4 +74,17 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0775',
     }
+
+    file {'/usr/lib/systemd/system/direwolf20.service':
+        ensure => file,
+        owner => 'root',
+        group => 'root',
+        source => "https://raw.githubusercontent.com/demon012/docker-minecraft-direwolf20/master/direwolf20.service",
+    } ->
+    service { 'direwolf20':
+        ensure => running,
+        enable  => true,
+        hasrestart => false,
+        hasstatus => false,
+    }
 }
