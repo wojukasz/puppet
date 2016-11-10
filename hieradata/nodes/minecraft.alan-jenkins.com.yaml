@@ -4,4 +4,3 @@ classes:
 docker::images::images:
     demon012/minecraft-direwolf20:
         image_tag: 'latest'
-}
