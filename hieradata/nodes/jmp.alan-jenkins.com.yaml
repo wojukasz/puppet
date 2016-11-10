@@ -1,0 +1,6 @@
+classes:
+    - docker::images
+
+docker::images::images:
+    alpine:
+        image_tag: '3.4'
