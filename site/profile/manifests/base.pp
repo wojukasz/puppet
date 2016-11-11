@@ -34,7 +34,8 @@ class profile::base {
            'tmux',
            'htop',
            'rsync',
-           'ranger'
+           'ranger',
+           'ncdu'
           ]:
     ensure => present,
   }
