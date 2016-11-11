@@ -33,7 +33,9 @@ class profile::base {
   package {['sudo',
            'tmux',
            'htop',
-           'rsync'
+           'rsync',
+           'ranger',
+           'ncdu'
           ]:
     ensure => present,
   }
