@@ -35,7 +35,8 @@ class profile::base {
            'htop',
            'rsync',
            'ranger',
-           'ncdu'
+           'ncdu',
+           'aws-cli'
           ]:
     ensure => present,
   }
