@@ -7,6 +7,12 @@ class profile::minecraft {
         ensure => present,
         system => true,
     } ->
+    file { '/home/minecraft':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0700'
+    }
     file { '/srv/minecraft/':
         ensure => directory,
         owner => 'minecraft',
