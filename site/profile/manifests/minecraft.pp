@@ -12,7 +12,7 @@ class profile::minecraft {
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0700'
-    }
+    } ->
     file { '/srv/minecraft/':
         ensure => directory,
         owner => 'minecraft',
