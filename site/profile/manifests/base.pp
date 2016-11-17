@@ -1,6 +1,6 @@
 class profile::base {
   class {'::ntp': }
-  class {'sudo': }
+  include sudo
 
   package { 'fish':
     ensure => 'present'
