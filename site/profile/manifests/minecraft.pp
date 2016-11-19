@@ -43,6 +43,18 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0775',
     } ->
+    file { '/srv/minecraft/direwolf20/config.override/':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0775',
+    } ->
+    file { '/srv/minecraft/direwolf20/mods.override/':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0775',
+    } ->
     file { '/srv/minecraft/direwolf20/backups/':
         ensure => directory,
         owner => 'minecraft',
