@@ -12,8 +12,8 @@ timezone::locality: 'London'
 
 sudo::configs:
     'sudo':
-        'content': '%sudo ALL=(ALL)'
-        'priority': '10'
+        'content': '%sudo ALL=(ALL) NOPASSWD: ALL'
+        'priority': 10
 
 sensu::purge:
     config: true
