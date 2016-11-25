@@ -6,18 +6,13 @@ class profile::base {
     ensure => 'present'
   }
 
-  group { 'sudo':
+  group { 'admins':
     ensure => 'present',
   }
 
-  /* sudo::conf { 'sudo': */
-  /*   priority => 10, */
-  /*   content  => "%sudo ALL=(ALL)" */
-  /* } */
-
   user { 'alan':
     ensure         => present,
-    groups         => [ 'sudo' ],
+    groups         => [ 'admins' ],
     home           => '/home/alan',
     managehome     => true,
     purge_ssh_keys => true,
