@@ -3,6 +3,11 @@ class profile::base {
   include sudo
   include sudo::configs
 
+  sudo::conf { 'admins':
+      priority => 10,
+      content  => "%admins ALL=(ALL) NOPASSWD: ALL",
+  }
+
   package { 'fish':
     ensure => 'present'
   }
