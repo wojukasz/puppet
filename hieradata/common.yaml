@@ -9,3 +9,33 @@ ntp::servers:
 
 timezone::region: 'Europe'
 timezone::locality: 'London'
+
+sudo::configs:
+    # 'sudo':
+    #     'content': '%sudo ALL=(ALL) NOPASSWD: ALL'
+    #     'priority': 10
+    'admins':
+        'content'   : "%admins ALL=(ALL) NOPASSWD: ALL"
+        'priority'  : 10
+
+sensu::purge:
+    config: true
+
+sensu::rabitmq_host: sensu1.alan-jenkins.com
+sensu::rabbitmq_password: Testpassword123@
+sensu::rabbitmq_port: 5672
+
+sensu::client: true
+sensu::server: false
+
+sensu::handlers:
+  'graphite':
+    type: 'tcp'
+    socket:
+      host: '127.0.0.1'
+      port: '2003'
+    mutator: "only_check_output"
+  'file':
+    command: '/etc/sensu/handlers/file.rb'
+  'mail':
+    command: 'mail -s 'Sensu Event' alan.james.jenkins@gmail.com'
