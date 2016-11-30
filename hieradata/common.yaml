@@ -9,8 +9,3 @@ ntp::servers:
 
 timezone::region: 'Europe'
 timezone::locality: 'London'
-
-sudo::configs:
-    'sudo':
-        'content': '%sudo ALL=(ALL)'
-        'priority': '10'
