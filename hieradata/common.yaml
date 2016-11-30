@@ -10,13 +10,10 @@ ntp::servers:
 timezone::region: 'Europe'
 timezone::locality: 'London'
 
-sudo::configs:
-    # 'sudo':
-    #     'content': '%sudo ALL=(ALL) NOPASSWD: ALL'
-    #     'priority': 10
-    'admins':
-        'content'   : "%admins ALL=(ALL) NOPASSWD: ALL"
-        'priority'  : 10
+# sudo::configs:
+#     'admins':
+#         'content'   : "%admins ALL=(ALL) NOPASSWD: ALL"
+#         'priority'  : 10
 
 sensu::purge:
     config: true
