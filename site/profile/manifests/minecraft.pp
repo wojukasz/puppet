@@ -111,9 +111,10 @@ class profile::minecraft {
     }->
     file {'/usr/lib/systemd/system/direwolf20.service':
         ensure => file,
-        owner => 'root',
-        group => 'root',
+        owner  => 'root',
+        group  => 'root',
         source => "https://raw.githubusercontent.com/demon012/docker-minecraft-direwolf20/master/direwolf20.service",
+        notify => Exec['systemctl-daemon-reload'],
     } ->
     service { 'direwolf20':
         ensure => running,
