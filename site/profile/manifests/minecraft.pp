@@ -1,4 +1,5 @@
 class profile::minecraft {
+    include ::systemd
     class {'docker':
         version => 'latest',
         docker_users => ['alan'],
