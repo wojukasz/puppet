@@ -1,12 +1,12 @@
 class profile::base {
   class {'::ntp': }
-  /* include sudo */
-  /* include sudo::configs */
+  include sudo
+  include sudo::configs
 
-  /* sudo::conf { 'admins': */
-  /*     priority => 10, */
-  /*     content  => "%admins ALL=(ALL) NOPASSWD: ALL", */
-  /* } */
+  sudo::conf { 'admins':
+      priority => 10,
+      content  => "%admins ALL=(ALL) NOPASSWD: ALL",
+  }
 
   package { 'fish':
     ensure => 'present'
