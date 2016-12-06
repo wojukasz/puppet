@@ -14,97 +14,97 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0700'
     } ->
-    file { '/srv/minecraft/':
+    file { '/home/minecraft/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20':
+    file { '/home/minecraft/direwolf20':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/world':
+    file { '/home/minecraft/direwolf20/world':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/logs':
+    file { '/home/minecraft/direwolf20/logs':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/crash-reports':
+    file { '/home/minecraft/direwolf20/crash-reports':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/config/':
+    file { '/home/minecraft/direwolf20/config/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/config.override/':
+    file { '/home/minecraft/direwolf20/config.override/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/mods.override/':
+    file { '/home/minecraft/direwolf20/mods.override/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/backups/':
+    file { '/home/minecraft/direwolf20/backups/':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/config/JourneyMapServer':
+    file { '/home/minecraft/direwolf20/config/JourneyMapServer':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/banned-ips.json':
+    file { '/home/minecraft/direwolf20/banned-ips.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/banned-players.json':
+    file { '/home/minecraft/direwolf20/banned-players.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/ops.json':
+    file { '/home/minecraft/direwolf20/ops.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/usercache.json':
+    file { '/home/minecraft/direwolf20/usercache.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/whitelist.json':
+    file { '/home/minecraft/direwolf20/whitelist.json':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
         mode => '0775',
     } ->
-    file { '/srv/minecraft/direwolf20/server.properties':
+    file { '/home/minecraft/direwolf20/server.properties':
         ensure => file,
         owner => 'minecraft',
         group => 'minecraft',
