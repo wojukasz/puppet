@@ -1,4 +1,5 @@
 class profile::minecraft {
+    include ::systemd
     class {'docker':
         version => 'latest',
         docker_users => ['alan'],
@@ -7,7 +8,7 @@ class profile::minecraft {
         ensure => present,
         system => true,
     } ->
-    file { '/home/minecraft':
+    file { '/srv/minecraft':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
@@ -32,6 +33,12 @@ class profile::minecraft {
         mode => '0775',
     } ->
     file { '/srv/minecraft/direwolf20/logs':
+        ensure => directory,
+        owner => 'minecraft',
+        group => 'minecraft',
+        mode => '0775',
+    } ->
+    file { '/srv/minecraft/direwolf20/crash-reports':
         ensure => directory,
         owner => 'minecraft',
         group => 'minecraft',
@@ -105,9 +112,10 @@ class profile::minecraft {
     }->
     file {'/usr/lib/systemd/system/direwolf20.service':
         ensure => file,
-        owner => 'root',
-        group => 'root',
+        owner  => 'root',
+        group  => 'root',
         source => "https://raw.githubusercontent.com/demon012/docker-minecraft-direwolf20/master/direwolf20.service",
+        notify => Exec['systemctl-daemon-reload'],
     } ->
     service { 'direwolf20':
         ensure => running,
