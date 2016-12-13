@@ -6,5 +6,6 @@ docker::images::images:
     demon012/minecraft-direwolf20:
         image_tag: 'latest'
 
-direwolf20:memory_max: 3000
-direwolf20:memory_min: 3000
+minecraft::direwolf20::memory_max: 3000
+minecraft::direwolf20::memory_min: 3000
+minecraft::direwolf20::github_repo: https://github.com/demon012/minecraft-direwolf20-overrides
