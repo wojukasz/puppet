@@ -14,12 +14,6 @@ class profile::minecraft {
         group => 'minecraft',
         mode => '0700'
     } ->
-    file { '/srv/minecraft/':
-        ensure => directory,
-        owner => 'minecraft',
-        group => 'minecraft',
-        mode => '0775',
-    } ->
     file { '/srv/minecraft/direwolf20':
         ensure => directory,
         owner => 'minecraft',
