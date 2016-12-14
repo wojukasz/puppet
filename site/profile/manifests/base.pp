@@ -5,7 +5,7 @@ class profile::base {
 
   sudo::conf { 'admins':
       priority => 10,
-      content  => "%admins ALL=(ALL) NOPASSWD: ALL",
+      content  => "%admins ALL=(ALL)",
   }
 
   package { 'fish':
