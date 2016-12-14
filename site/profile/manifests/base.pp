@@ -5,7 +5,7 @@ class profile::base {
 
   sudo::conf { 'admins':
       priority => 10,
-      content  => "%admins ALL=(ALL)",
+      content  => "%admins ALL=(ALL) ALL",
   }
 
   package { 'fish':
