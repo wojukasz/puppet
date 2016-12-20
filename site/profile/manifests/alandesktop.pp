@@ -1,4 +1,4 @@
-class base::alandesktop {
+class profile::alandesktop {
     $desktop_packages = [
         'google-chrome',
         'xorg-server',
