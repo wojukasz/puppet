@@ -1,5 +1,5 @@
 class profile::alandesktop {
-    $desktop_packages = [ 
+    $desktop_packages = [
         'aria2',
         'bind-tools',
         'chromium',
