@@ -7,4 +7,18 @@ class profile::jenkins {
         ensure => running,
         enable => true,
     }
+
+    file { '/home/jenkins':
+        ensure => directory,
+        owner => 'jenkins',
+        group => 'jenkins',
+        mode => '0770',
+        requires => Package['jenkins'],
+    } ->
+    file { '/home/jenkins/.ssh':
+        ensure => directory,
+        owner => 'jenkins',
+        group => 'jenkins',
+        mode => '0770',
+    }
 }
