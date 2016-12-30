@@ -41,6 +41,12 @@ class profile::archrepo {
     User <| title == "alan" |> {
         groups +> ["archrepo"],
     } ->
+    file { '/srv/http/repo':
+        ensure => directory,
+        owner => 'root',
+        group => 'root',
+        mode => '0775',
+    }
     file { '/srv/http/repo/arch':
         ensure => directory,
         owner => 'root',
