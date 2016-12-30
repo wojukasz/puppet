@@ -38,7 +38,9 @@ class profile::archrepo {
     group { 'archrepo':
         ensure => present,
     } ->
-    User["alan"]{ groups +> ["archrepo"] } ->
+    User <| title == "alan" |> {
+        groups +> ["archrepo"],
+    } ->
     file { '/srv/http/repo/arch':
         ensure => directory,
         owner => 'root',
