@@ -21,4 +21,8 @@ class profile::jenkins {
         group => 'jenkins',
         mode => '0770',
     }
+
+    package { 'go':
+        ensure => latest,
+    }
 }
