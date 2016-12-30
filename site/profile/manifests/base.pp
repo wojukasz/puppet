@@ -45,6 +45,23 @@ class profile::base {
     key    => 'AAAAB3NzaC1yc2EAAAABJQAAAgEAoKKdY6X3upHYYAgfRhaMczF2pATYhU5vOfihjH0R+Ywica/zqdEREkJoJzqHkGzfYNQkcpLMrrcJwpSRZGJguDjpaAJU5brvmTef1TM8+Uup5K6hcden4L7cGiiL84NH+sAhzgpW92MXQaP5JwXUfrLsYBZ9siy1UHTgotVCorT6htwHV8JH/GOQb7pEmNVlZO52ptFrmZMoSgTdne4YH/Mi+vQzqDzfLzIeKD5IzXVFI5kxZBKd1OjhsRSqD+rE7Zwy6RwTeq0AjS7hJbvc243t6PlpzItNXl62dmbhKKhjDzfvLvFm0DvpRry6asQysrTlFHiwN9R1/pI+7/eUYtJ8uovZeyvNu12T3fpNTryqqyJgUUmH+GFhb85iANFJVBo1j3vEDzrvM2K5DK8Le+pqtxAbXgToJJpAmepohAN/+QGex6ZiuKAYK6zk6oZmU8vISbe8eWKrifu/neCm/pWZATCfsXp4RDmh+zIZ0eHwffB3wdOBDG5p4Tc0KWs4UqesaAhVDP2MmvS1/u7vbjCNTsd9M9msNX2REvSDAXShUQjtPPWNkrxDF5AAinxP9uSYXGu2wqBoxwWDFK5spooh7d5Uy9mdFXBZj91fbl0TZWn2U2vP7LEHAdQhgnEUAQS8kyQbsJARatMZCRiBB3UO0pncte4n2dBo0awqQqc='
   }
 
+  $archrepo = @("ARCHREPO")
+      [arch.repo.alan-jenkins.com]
+      SigLevel = Optional TrustedOnly
+      Server = http://arch.repo.alan-jenkins.com/x86_64
+      | ARCHREPO
+
+  file { '/etc/pacman.d/arch.repo.alan-jenkins.com':
+      ensure => file,
+      content => $archrepo,
+      notify => Exec['pacman-Sy'],
+  }
+
+  exec {'pacman-Sy':
+      command => 'pacman -Sy',
+      refreshonly => true,
+  }
+
   package {[
        'augeas',
        'ruby-augeas',
