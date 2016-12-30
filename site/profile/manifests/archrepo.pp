@@ -34,5 +34,16 @@ class profile::archrepo {
         require => Package['nginx'],
         notify => Service['nginx'],
     }
+
+    group { 'archrepo':
+        ensure => present,
+    } ->
+    User["alan"]{ groups +> ["archrepo"] } ->
+    file { '/srv/http/repo/arch':
+        ensure => directory,
+        owner => 'root',
+        group => 'archrepo',
+        mode => '0775',
+    }
 }
 
