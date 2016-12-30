@@ -13,7 +13,7 @@ class profile::jenkins {
         owner => 'jenkins',
         group => 'jenkins',
         mode => '0770',
-        requires => Package['jenkins'],
+        require => Package['jenkins'],
     } ->
     file { '/home/jenkins/.ssh':
         ensure => directory,
