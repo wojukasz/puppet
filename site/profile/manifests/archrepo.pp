@@ -47,11 +47,37 @@ class profile::archrepo {
         group => 'root',
         mode => '0775',
     }
+
     file { '/srv/http/repo/arch':
         ensure => directory,
         owner => 'root',
         group => 'archrepo',
         mode => '0775',
+        require => File['/srv/http/repo'],
+    }
+
+    file { '/srv/http/repo/arch/x86_64':
+        ensure => directory,
+        owner => 'root',
+        group => 'archrepo',
+        mode => '0775',
+        require => File['/srv/http/repo/arch'],
+    }
+
+    file { '/srv/http/repo/arch/arm':
+        ensure => directory,
+        owner => 'root',
+        group => 'archrepo',
+        mode => '0775',
+        require => File['/srv/http/repo/arch'],
+    }
+
+    file { '/srv/http/repo/arch/i686':
+        ensure => directory,
+        owner => 'root',
+        group => 'archrepo',
+        mode => '0775',
+        require => File['/srv/http/repo/arch'],
     }
 }
 
