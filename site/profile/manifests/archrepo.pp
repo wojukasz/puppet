@@ -6,10 +6,14 @@ class profile::archrepo {
     service {'nginx':
         ensure => running,
         enable => true,
+        require => Package['nginx'],
     }
 
-    /* augeas { 'nginx_config': */
-
-    /* } */
+    file { '/etc/nginx/nginx.conf':
+        ensure => file,
+        content => template('archrepo/nginx.conf.epp'),
+        require => Package['nginx'],
+        notify => Service['nginx'],
+    }
 }
 
