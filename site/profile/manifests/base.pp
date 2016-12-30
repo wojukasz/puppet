@@ -58,7 +58,7 @@ class profile::base {
   }
 
   exec {'pacman-Sy':
-      command => 'pacman -Sy',
+      command => '/usr/bin/pacman -Sy',
       refreshonly => true,
   }
 
