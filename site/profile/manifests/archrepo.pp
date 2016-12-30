@@ -15,5 +15,25 @@ class profile::archrepo {
         require => Package['nginx'],
         notify => Service['nginx'],
     }
+
+    file { '/etc/nginx/sites-enabled':
+        ensure => directory,
+    }
+
+    file { '/etc/nginx/sites-available':
+        ensure => directory,
+    } ->
+    file { '/etc/nginx/sites-available/arch.repo.alan-jenkins.com.conf':
+        ensure => file,
+        content => template('archrepo/arch.repo.alan-jenkins.com.conf.epp'),
+        require => Package['nginx'],
+        notify => Service['nginx'],
+    } ->
+    file { '/etc/nginx/site-enabled/arch.repo.alan-jenkins.com.conf':
+        ensure => link,
+        target => '/etc/nginx/sites-available/arch.repo.alan-jenkins.com.conf',
+        require => Package['nginx'],
+        notify => Service['nginx'],
+    }
 }
 

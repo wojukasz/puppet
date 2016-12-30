@@ -1,0 +1,10 @@
+server {
+    listen 80;
+    server_name arch.repo.alan-jenkins.com;
+
+    root /srv/http/repo/arch/;
+
+    location / {
+        index index.html index.htm;
+    }
+}
