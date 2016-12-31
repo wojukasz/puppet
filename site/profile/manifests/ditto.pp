@@ -6,13 +6,13 @@ class profile::ditto {
   }
 
   exec {'systemctrl daemon-reload':
-    command     => "systemctl daemon-reload",
+    command     => "/usr/bin/systemctl daemon-reload",
     notify      => Exec['systemctl restart plexmediaserver'],
     refreshonly => true,
   }
 
   exec {'systemctl restart plexmediaserver':
-    command     => 'systemctl restart plexmediaserver',
+    command     => '/usr/bin/systemctl restart plexmediaserver',
     refreshonly =>  true,
   }
 }
