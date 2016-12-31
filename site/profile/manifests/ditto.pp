@@ -76,6 +76,29 @@ class profile::ditto {
     enable => true,
   }
 
+  file {'/srv/deluge':
+    ensure => file,
+    uid    => '125',
+    gid    => '125',
+    mode   => '0775',
+  }
+
+  file {'/srv/deluge/config':
+    ensure  => file,
+    uid     => '125',
+    gid     => '125',
+    mode    => '0775',
+    require => File['/srv/deluge'],
+  }
+
+  file {'/srv/deluge/downloads':
+    ensure  => file,
+    uid     => '125',
+    gid     => '125',
+    mode    => '0775',
+    require => File['/srv/deluge'],
+  }
+
   # file {'/usr/lib/systemd/system/sickrage.service':
   #   ensure  => file,
   #   content => template('sickrage/sickrage.service.epp'),
