@@ -6,7 +6,7 @@ class profile::ditto {
   service {'openvpn-client@client.service':
     ensure  => running,
     enable  => true,
-    require => Package['openvpm'],
+    require => Package['openvpn'],
   }
 
   file {'/usr/lib/systemd/system/plexmediaserver.service':
