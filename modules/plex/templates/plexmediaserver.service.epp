@@ -22,6 +22,11 @@ ExecStart=/usr/bin/docker run --rm --name plex \
           -v /srv/plex/database:/config \
           -v /srv/plex/transcode:/transcode \
           -v /srv/plex/data:/data \
+          -v /media/disks/storage1:/data/disk1 \
+          -v /media/disks/storage2:/data/disk2 \
+          -v /media/disks/storage3:/data/disk3 \
+          -v /media/disks/storage4:/data/disk4 \
+          -v /media/disks/storage5:/data/disk5 \
           plexinc/pms-docker
 Restart=always
 
