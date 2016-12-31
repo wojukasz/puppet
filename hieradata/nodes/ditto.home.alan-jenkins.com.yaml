@@ -2,5 +2,5 @@ classes:
     - docker::images
 
 docker::images::images:
-    timhaak/plex:
+    plexinc/pms-docker:
         image_tag: 'latest'
