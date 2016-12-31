@@ -17,7 +17,11 @@ class profile::ditto {
 
   exec {'systemctrl daemon-reload':
     command     => "/usr/bin/systemctl daemon-reload",
+    notify      => Service['couchpotato'],
+    notify      => Service['deluge'],
+    notify      => Service['headphones'],
     notify      => Service['plexmediaserver'],
+    notify      => Service['sickrage'],
     refreshonly => true,
   }
 
@@ -58,6 +62,18 @@ class profile::ditto {
     ensure  => file,
     content => template('deluge/deluge.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
+  }
+
+  user {'deluge':
+    ensure => present,
+    uid    => '125',
+    gid    => '125',
+    system => true,
+  }
+
+  service {'deluge':
+    ensure => running,
+    enable => true,
   }
 
   file {'/usr/lib/systemd/system/sickrage.service':
