@@ -5,7 +5,7 @@ After=docker.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/docker run --rm --user="plex:plex" --name plex \
+ExecStart=/usr/bin/docker run --rm --name plex \
           -p 32400:32400/tcp \
           -p 3005:3005/tcp \
           -p 8324:8324/tcp \
@@ -16,7 +16,7 @@ ExecStart=/usr/bin/docker run --rm --user="plex:plex" --name plex \
           -p 32413:32413/udp \
           -p 32414:32414/udp \
           -e TZ="Europe/London" \
-          -e PLEX_CLAIM="<claimToken>" \
+          -e PLEX_CLAIM="claim-Ct6PkJHCVcWA9moLeQp1" \
           -e ADVERTISE_IP="http://192.168.1.5:32400/" \
           -h ditto.home.alan-jenkins.com \
           -v /srv/plex/database:/config \
