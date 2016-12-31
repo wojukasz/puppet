@@ -27,20 +27,20 @@ class profile::ditto {
     owner    => 'plex',
     group    => 'plex',
     mode     => '0775',
-    requires => File['/srv/plex'],
+    require  => File['/srv/plex'],
   }
   file {'/srv/plex/transcode':
     ensure   => directory,
     owner    => 'plex',
     group    => 'plex',
     mode     => '0775',
-    requires => File['/srv/plex'],
+    require  => File['/srv/plex'],
   }
   file {'/srv/plex/data':
     ensure   => directory,
     owner    => 'plex',
     group    => 'plex',
     mode     => '0775',
-    requires => File['/srv/plex'],
+    require  => File['/srv/plex'],
   }
 }
