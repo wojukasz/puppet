@@ -5,3 +5,9 @@ classes:
 docker::images::images:
     plexinc/pms-docker:
         image_tag: 'latest'
+    linuxserver/deluge:
+        image_tag: 'latest'
+    linuxserver/sickrage:
+        image_tag: 'latest'
+    linuxserver/couchpotato:
+        image_tag: 'latest'
