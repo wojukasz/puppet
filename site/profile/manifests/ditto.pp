@@ -15,4 +15,32 @@ class profile::ditto {
     ensure  => running,
     enable => true,
   }
+
+  file {'/srv/plex':
+    ensure => directory,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0775',
+  }
+  file {'/srv/plex/database':
+    ensure   => directory,
+    owner    => 'plex',
+    group    => 'plex',
+    mode     => '0775',
+    requires => File['/srv/plex'],
+  }
+  file {'/srv/plex/transcode':
+    ensure   => directory,
+    owner    => 'plex',
+    group    => 'plex',
+    mode     => '0775',
+    requires => File['/srv/plex'],
+  }
+  file {'/srv/plex/data':
+    ensure   => directory,
+    owner    => 'plex',
+    group    => 'plex',
+    mode     => '0775',
+    requires => File['/srv/plex'],
+  }
 }
