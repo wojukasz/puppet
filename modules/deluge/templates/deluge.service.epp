@@ -1,0 +1,19 @@
+[Unit]
+Description=Deluge
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name deluge \
+          --net=host \
+          -e PUID=125 -e PGID=125 \
+          -e TZ="Europe/London" \
+          -v /srv/deluge/downloads:/downloads \
+          -v /srv/deluge/config:/config \
+          linuxserver/deluge
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
