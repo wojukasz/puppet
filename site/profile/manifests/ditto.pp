@@ -1,4 +1,8 @@
 class profile::ditto {
+  package {'openvpn':
+    ensure => latest,
+  }
+
   file {'/usr/lib/systemd/system/plexmediaserver.service':
     ensure  => file,
     content => template('plex/plexmediaserver.service.epp'),
@@ -43,5 +47,4 @@ class profile::ditto {
     mode     => '0775',
     require  => File['/srv/plex'],
   }
-
 }
