@@ -53,4 +53,28 @@ class profile::ditto {
     mode     => '0775',
     require  => File['/srv/plex'],
   }
+
+  file {'/usr/lib/systemd/system/deluge.service':
+    ensure  => file,
+    content => template('deluge/deluge.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
+
+  file {'/usr/lib/systemd/system/sickrage.service':
+    ensure  => file,
+    content => template('sickrage/sickrage.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
+
+  file {'/usr/lib/systemd/system/couchpotato.service':
+    ensure  => file,
+    content => template('couchpotato/couchpotato.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
+
+  file {'/usr/lib/systemd/system/headphones.service':
+    ensure  => file,
+    content => template('headphones/headphones.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
 }
