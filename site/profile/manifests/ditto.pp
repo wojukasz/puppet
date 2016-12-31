@@ -78,23 +78,23 @@ class profile::ditto {
 
   file {'/srv/deluge':
     ensure => file,
-    uid    => '125',
-    gid    => '125',
+    owner  => '125',
+    group  => '125',
     mode   => '0775',
   }
 
   file {'/srv/deluge/config':
     ensure  => file,
-    uid     => '125',
-    gid     => '125',
+    owner   => '125',
+    group   => '125',
     mode    => '0775',
     require => File['/srv/deluge'],
   }
 
   file {'/srv/deluge/downloads':
     ensure  => file,
-    uid     => '125',
-    gid     => '125',
+    owner   => '125',
+    group   => '125',
     mode    => '0775',
     require => File['/srv/deluge'],
   }
