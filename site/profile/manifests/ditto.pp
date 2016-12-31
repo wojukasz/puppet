@@ -77,14 +77,14 @@ class profile::ditto {
   }
 
   file {'/srv/deluge':
-    ensure => file,
+    ensure => directory,
     owner  => '125',
     group  => '125',
     mode   => '0775',
   }
 
   file {'/srv/deluge/config':
-    ensure  => file,
+    ensure  => directory,
     owner   => '125',
     group   => '125',
     mode    => '0775',
@@ -92,7 +92,7 @@ class profile::ditto {
   }
 
   file {'/srv/deluge/downloads':
-    ensure  => file,
+    ensure  => directory,
     owner   => '125',
     group   => '125',
     mode    => '0775',
