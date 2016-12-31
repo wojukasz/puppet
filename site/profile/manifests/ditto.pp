@@ -17,11 +17,11 @@ class profile::ditto {
 
   exec {'systemctrl daemon-reload':
     command     => "/usr/bin/systemctl daemon-reload",
-    notify      => Service['couchpotato'],
-    notify      => Service['deluge'],
-    notify      => Service['headphones'],
-    notify      => Service['plexmediaserver'],
-    notify      => Service['sickrage'],
+    # notify      => Service['couchpotato'],
+    # notify      => Service['deluge'],
+    # notify      => Service['headphones'],
+    # notify      => Service['plexmediaserver'],
+    # notify      => Service['sickrage'],
     refreshonly => true,
   }
 
