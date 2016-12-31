@@ -3,6 +3,12 @@ class profile::ditto {
     ensure => latest,
   }
 
+  service {'openvpn-client@client.service':
+    ensure  => running,
+    enable  => true,
+    require => Package['openvpm'],
+  }
+
   file {'/usr/lib/systemd/system/plexmediaserver.service':
     ensure  => file,
     content => template('plex/plexmediaserver.service.epp'),
