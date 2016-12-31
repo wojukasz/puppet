@@ -44,29 +44,4 @@ class profile::ditto {
     require  => File['/srv/plex'],
   }
 
-  file {'/srv/plex/data/disk1':
-    ensure  => link,
-    target  => '/media/disks/storage1',
-    require => File['/srv/plex/data'],
-  }
-  file {'/srv/plex/data/disk2':
-    ensure  => link,
-    target  => '/media/disks/storage2',
-    require => File['/srv/plex/data'],
-  }
-  file {'/srv/plex/data/disk3':
-    ensure  => link,
-    target  => '/media/disks/storage3',
-    require => File['/srv/plex/data'],
-  }
-  file {'/srv/plex/data/disk4':
-    ensure  => link,
-    target  => '/media/disks/storage4',
-    require => File['/srv/plex/data'],
-  }
-  file {'/srv/plex/data/disk5':
-    ensure  => link,
-    target  => '/media/disks/storage5',
-    require => File['/srv/plex/data'],
-  }
 }
