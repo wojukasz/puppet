@@ -13,6 +13,6 @@ class profile::ditto {
 
   service {'plexmediaserver':
     ensure  => running,
-    enabled => true,
+    enable => true,
   }
 }
