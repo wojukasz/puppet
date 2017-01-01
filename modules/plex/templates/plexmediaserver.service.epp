@@ -5,7 +5,7 @@ After=docker.service
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/docker run --rm --name plex \
+ExecStart=/usr/bin/docker run --rm --name plex -e PUID=421 -e PGUID=421 \
           -p 32400:32400/tcp \
           -p 3005:3005/tcp \
           -p 8324:8324/tcp \
