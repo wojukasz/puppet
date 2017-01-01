@@ -1,0 +1,24 @@
+[Unit]
+Description=Couchpotato
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/docker run --rm --name couchpotato \
+          -v /srv/couchpotato/config:/config \
+          -v /srv/deluge/downloads:/downloads \
+          -v /media/disks/storage1/Movies:/movies/disk1 \
+          -v /media/disks/storage2/Movies:/movies/disk2 \
+          -v /media/disks/storage3/Movies:/movies/disk3 \
+          -v /media/disks/storage4/Movies:/movies/disk4 \
+          -v /media/disks/storage5/Movies:/movies/disk5 \
+          -e PGID="1004" -e PUID="1004"  \
+          -e TZ="Europe/London" \
+          -p 5050:5050 \
+          linuxserver/couchpotato
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
