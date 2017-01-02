@@ -5,7 +5,7 @@ upstream jenkins {
 server {
 	listen 80;
 	server_name jenkins.alan-jenkins.com;
-	/* return 301 https://$host$request_uri; */
+    # return 301 https://$host$request_uri;
 	return 301 http://$host$request_uri;
 }
 
@@ -13,8 +13,8 @@ server {
 	listen 443 ssl;
 	server_name jenkins.alan-jenkins.com;
 
-	/* ssl_certificate /var/lib/acme/live/jenkins.alan-jenkins.com/fullchain; */
-	/* ssl_certificate_key /var/lib/acme/live/jenkins.alan-jenkins.com/privkey; */
+    # ssl_certificate /var/lib/acme/live/jenkins.alan-jenkins.com/fullchain;
+    # ssl_certificate_key /var/lib/acme/live/jenkins.alan-jenkins.com/privkey;
 
 	location / {
 		proxy_set_header        Host $host:$server_port;
@@ -22,7 +22,7 @@ server {
 		proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_set_header        X-Forwarded-Proto $scheme;
 		proxy_pass              http://jenkins;
-		/* proxy_redirect http:// https://; */
-		/* proxy_pass              http://jenkins; */
+        # proxy_redirect http:// https://;
+        # proxy_pass              http://jenkins;
 	}
 }
