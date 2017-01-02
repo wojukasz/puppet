@@ -30,6 +30,12 @@ class profile::jenkins {
       content => template('jenkins/jenkins.alan-jenkins.com.epp')
     }
 
+		file { '/etc/nginx/sites-enabled/jenkins.alan-jenkins.com':
+      ensure => link,
+      target => '/etc/nginx/sites-available/jenkins.alan-jenkins.com',
+      notify => Service['nginx'],
+    }
+
     package { 'go':
         ensure => latest,
     }
