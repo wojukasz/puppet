@@ -22,6 +22,14 @@ class profile::jenkins {
         mode => '0770',
     }
 
+    file { '/etc/nginx/sites-available/jenkins.alan-jenkins.com':
+      ensure  => file,
+      owner   => 'root',
+      group   => 'root',
+      mode    => '0444',
+      content => template('jenkins/jenkins.alan-jenkins.com.epp')
+    }
+
     package { 'go':
         ensure => latest,
     }
