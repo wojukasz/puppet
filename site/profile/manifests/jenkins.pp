@@ -3,6 +3,10 @@ class profile::jenkins {
         ensure => latest,
     }
 
+    package {'acmetool':
+      ensure => latest,
+    }
+
     service {'jenkins':
         ensure => running,
         enable => true,
