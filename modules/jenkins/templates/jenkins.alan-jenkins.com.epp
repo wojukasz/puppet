@@ -38,6 +38,6 @@ server {
 # 	}
 #    location ~ "^/\.well-known/acme-challenge/([-_a-zA-Z0-9]+)$" {
 #                default_type text/plain;
-#                return 200 "<%= $letsencrypt::account_thumbprint %>";
+#                return 200 "<%= $letsencrypt-account_thumbprint %>";
 #        }
 # }

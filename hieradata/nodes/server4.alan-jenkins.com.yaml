@@ -1,5 +1,5 @@
 
-letsencrypt::account_thumbprint: >
+letsencrypt-account_thumbprint: >
     ENC[PKCS7,MIIBmQYJKoZIhvcNAQcDoIIBijCCAYYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAAYL/Eh+IuyVekZ39z88K+LeQSra3XRPvox3q
     IYN7RT+5LWoejpoUKU67Viu/W34z0sT+igxBNRNznOhgJBIC/ua59geoNZ5q
