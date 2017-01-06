@@ -18,13 +18,15 @@ server {
 	}
 }
 
+
+
 # server {
 # 	listen 443 ssl;
 # 	server_name jenkins.alan-jenkins.com;
-# 
+#
 #     # ssl_certificate /var/lib/acme/live/jenkins.alan-jenkins.com/fullchain;
 #     # ssl_certificate_key /var/lib/acme/live/jenkins.alan-jenkins.com/privkey;
-# 
+#
 # 	location / {
 # 		proxy_set_header        Host $host:$server_port;
 # 		proxy_set_header        X-Real-IP $remote_addr;
@@ -34,4 +36,8 @@ server {
 #         # proxy_redirect http:// https://;
 #         # proxy_pass              http://jenkins;
 # 	}
+#    location ~ "^/\.well-known/acme-challenge/([-_a-zA-Z0-9]+)$" {
+#                default_type text/plain;
+#                return 200 "";
+#        }
 # }
