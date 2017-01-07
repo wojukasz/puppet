@@ -1,5 +1,6 @@
 class profile::jenkins {
     $le_account_thumbprint = hiera("letsencrypt-account_thumbprint")
+    $hashtest = { le_account_thumbprint => "bob" }
     package {'jenkins':
         ensure => latest,
     }
@@ -32,7 +33,7 @@ class profile::jenkins {
       owner                                                                                         => 'root',
       group                                                                                         => 'root',
       mode                                                                                          => '0444',
-      content => template('jenkins/jenkins.alan-jenkins.com.epp', { le_account_thumbprint => "bob" })
+      content => template('jenkins/jenkins.alan-jenkins.com.epp', $hashtest)
     }
 
 		file { '/etc/nginx/sites-enabled/jenkins.alan-jenkins.com':
