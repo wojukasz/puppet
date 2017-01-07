@@ -33,7 +33,7 @@ class profile::jenkins {
       owner                                                                                         => 'root',
       group                                                                                         => 'root',
       mode                                                                                          => '0444',
-      content => template('jenkins/jenkins.alan-jenkins.com.epp', $hashtest)
+      content => epp('jenkins/jenkins.alan-jenkins.com.epp', $hashtest)
     }
 
 		file { '/etc/nginx/sites-enabled/jenkins.alan-jenkins.com':
