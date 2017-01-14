@@ -1,5 +1,6 @@
 class profile::alandesktop {
     $desktop_packages = [
+        'ansible',
         'aria2',
         'bind-tools',
         'chromium',
