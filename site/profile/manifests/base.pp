@@ -1,5 +1,5 @@
 class profile::base {
-  if $facts['os']['platform'] == 'linux' {
+  if $facts['os']['family'] == 'linux' {
     class {'::ntp': }
     include sudo
     include sudo::configs
@@ -79,7 +79,7 @@ class profile::base {
         ],
     }
   }
-  elsif $facts['os']['platform'] == 'windows' {
+  elsif $facts['os']['family'] == 'windows' {
     $puppetconfig = @(EOT)
     [main]
     server=puppet.alan-jenkins.com
