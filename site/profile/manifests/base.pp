@@ -87,7 +87,7 @@ class profile::base {
     environment=production
     | EOT
 
-    file {'%PROGRAMDATA%\PuppetLabs\puppet\etc':
+    file {'C:\ProgramData\PuppetLabs\puppet\etc\puppet.conf':
       ensure  => file,
       content => $puppetconfig
     }
