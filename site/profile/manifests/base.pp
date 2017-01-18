@@ -1,5 +1,5 @@
 class profile::base {
-  if $facts['os']['name'] != 'windows' {
+  if $facts['os']['platform'] == 'linux' {
     class {'::ntp': }
     include sudo
     include sudo::configs
@@ -77,6 +77,19 @@ class profile::base {
           "set main/runinterval 1h",
           "set main/strict_variables true"
         ],
+    }
+  }
+  elsif $facts['os']['platform'] == 'windows' {
+    $puppetconfig = @(EOT)
+    [main]
+    server=puppet.alan-jenkins.com
+    autoflush=true
+    environment=production
+    | EOT
+
+    file {'%PROGRAMDATA%\PuppetLabs\puppet\etc':
+      ensure  => file,
+      content => $puppetconfig
     }
   }
 }
