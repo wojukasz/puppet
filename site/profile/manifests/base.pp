@@ -97,6 +97,9 @@ class profile::base {
 
     Package { provider => chocolatey, }
 
+    package {'googlechrome':
+      ensure => latest,
+    }
     package {'filezilla':
       ensure => latest,
     }
@@ -134,6 +137,9 @@ class profile::base {
       ensure => latest,
     }
     package {'googledrive':
+      ensure => latest,
+    }
+    package {'sumatrapdf':
       ensure => latest,
     }
     package {'pidgin':
