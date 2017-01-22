@@ -80,6 +80,7 @@ class profile::base {
     }
   }
   elsif $facts['os']['family'] == 'windows' {
+    include stdlib
     include chocolatey
 
     $puppetconfig = @(EOT)
