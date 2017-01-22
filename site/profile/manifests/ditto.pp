@@ -1,4 +1,7 @@
 class profile::ditto {
+  service {'nginx':
+    ensure => running,
+  }
   package {'openvpn':
     ensure => latest,
   }
