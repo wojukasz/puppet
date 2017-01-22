@@ -97,7 +97,7 @@ class profile::base {
 
     Package { provider => chocolatey, }
 
-    package {'filzilla':
+    package {'filezilla':
       ensure => latest,
     }
     package {'gimp':
