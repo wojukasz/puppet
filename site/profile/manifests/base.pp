@@ -142,5 +142,17 @@ class profile::base {
     package {'pidgin':
       ensure => latest,
     }
+    package {'classic-shell':
+      ensure => latest,
+    }
+    package {'nmap':
+      ensure => latest,
+    }
+    package {'vlc':
+      ensure => latest,
+    }
+    package {'sysinternals':
+      ensure => latest,
+    }
   }
 }
