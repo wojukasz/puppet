@@ -115,9 +115,6 @@ class profile::base {
     package {'vim':
       ensure => latest,
     }
-    package {'hdsentinel':
-      ensure => latest,
-    }
     package {'vagrant':
       ensure => latest,
     }
