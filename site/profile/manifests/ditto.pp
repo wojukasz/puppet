@@ -64,6 +64,16 @@ class profile::ditto {
     notify  => Exec['systemctrl daemon-reload'],
   }
 
+  file {'/etc/nginx/sites-available/deluge.conf':
+    ensure  => file,
+    content => epp('deluge/deluge.conf.epp'),
+  } ->
+  file {'/etc/nginx/sites-enabled/deluge.conf':
+    ensure => link,
+    source => '/etc/nginx/sites-available/deluge.conf',
+    notify => Service['nginx']
+  }
+
   user {'deluge':
     ensure => present,
     uid    => '125',
