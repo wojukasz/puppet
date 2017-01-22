@@ -95,6 +95,8 @@ class profile::base {
       content => $puppetconfig
     }
 
+    Package { provider => } chocolatey, }
+
     package {'filzilla':
       ensure => latest,
     }
