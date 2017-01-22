@@ -94,5 +94,51 @@ class profile::base {
       ensure  => file,
       content => $puppetconfig
     }
+
+    package {'filzilla':
+      ensure => latest,
+    }
+    package {'gimp':
+      ensure => latest,
+    }
+    package {'inkscape':
+      ensure => latest,
+    }
+    package {'libreoffice':
+      ensure => latest,
+    }
+    package {'7zip':
+      ensure => latest,
+    }
+    package {'vim':
+      ensure => latest,
+    }
+    package {'hdsentinel':
+      ensure => latest,
+    }
+    package {'vagrant':
+      ensure => latest,
+    }
+    package {'virtualbox':
+      ensure => latest,
+    }
+    package {'putty':
+      ensure => latest,
+    }
+    package {'git':
+      ensure => latest,
+    }
+    package {'autohotkey':
+      ensure => latest,
+    }
+    package {'dropbox':
+      ensure => latest,
+    }
+    package {'googledrive':
+      ensure => latest,
+    }
+    package {'pidgin':
+      ensure => latest,
+    }
   }
 }
