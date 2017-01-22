@@ -80,6 +80,8 @@ class profile::base {
     }
   }
   elsif $facts['os']['family'] == 'windows' {
+    include chocolatey
+
     $puppetconfig = @(EOT)
     [main]
     server=puppet.alan-jenkins.com
