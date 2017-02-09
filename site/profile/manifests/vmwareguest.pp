@@ -5,8 +5,8 @@ class profile::vmwareguest {
     ]
 
     service {'vmtoolsd':
-      enable  => true,
-      ensure => running
+      ensure => running,
+      enable => true,
     }
 
     package { $vmware_packages: ensure => latest }
