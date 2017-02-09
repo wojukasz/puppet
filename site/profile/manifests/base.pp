@@ -6,7 +6,7 @@ class profile::base {
 
     sudo::conf { 'admins':
         priority => 10,
-        content  => "%admins ALL=(ALL) ALL",
+        content  => '%admins ALL=(ALL) ALL',
     }
 
     package { 'fish':
@@ -47,35 +47,35 @@ class profile::base {
     }
 
     file { '/etc/pacman.conf':
-        ensure => file,
+        ensure  => file,
         content => template('arch/pacman.conf.epp'),
-        notify => Exec['pacman-Sy'],
+        notify  => Exec['pacman-Sy'],
     }
 
     exec {'pacman-Sy':
-        command => '/usr/bin/pacman -Sy',
+        command     => '/usr/bin/pacman -Sy',
         refreshonly => true,
     }
 
     package {[
-         'augeas',
-         'ruby-augeas',
-         'aws-cli',
-         'htop',
-         'ncdu',
-         'ranger',
-         'rsync',
-         'tmux'
-            ]:
+      'augeas',
+      'ruby-augeas',
+      'aws-cli',
+      'htop',
+      'ncdu',
+      'ranger',
+      'rsync',
+      'tmux'
+    ]:
       ensure => present,
     } ->
     augeas { 'puppetconfig':
         context => '/files/etc/puppetlabs/puppet/puppet.conf',
         changes => [
-          "set main/server puppet.alan-jenkins.com",
-          "set main/environment production",
-          "set main/runinterval 1h",
-          "set main/strict_variables true"
+          'set main/server puppet.alan-jenkins.com',
+          'set main/environment production',
+          'set main/runinterval 1h',
+          'set main/strict_variables true'
         ],
     }
   }
