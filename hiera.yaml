@@ -1,19 +1,14 @@
 ---
-backends:
-    - eyaml
-    - yaml
-
-:hierarchy:
-    - "nodes/%{trusted.certname}"
-    - "environment/%{server_facts.environment}"
-    - "virtual/%{::is_virtual}"
-    - common
-
-:yaml:
-    :datadir: '/etc/puppetlabs/code/environments/%{environment}/hieradata'
-
-:eyaml:
-    :datadir: '/etc/puppetlabs/code/environments/%{environment}/hieradata'
-    :pkcs7_private_key: /etc/puppetlabs/puppet/keys/private_key.pkcs7.pem
-    :pkcs7_public_key: /etc/puppetlabs/puppet/keys/public_key.pkcs7.pem
-    :extension: 'eyaml'
+version: 5
+defaults:
+  datadir: hieradata
+  data_hash: yaml_data
+hierarchy:
+  - name: "Per-node data"
+    path: "nodes/%{trusted.certname}.yaml"
+  # - name: "Environment specific data"
+  #   path: "environment/%{server_facts.environment}.yaml"
+  - name: "Virtualised / Non Virtualised specific data."
+    path: "virtual/%{::is_virtual}.yaml"
+  - name: "Data common to all servers"
+    path: "common.yaml"
