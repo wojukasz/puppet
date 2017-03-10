@@ -14,7 +14,7 @@ class profile::ditto {
 
   file {'/usr/lib/systemd/system/plexmediaserver.service':
     ensure  => file,
-    content => template('plex/plexmediaserver.service.epp'),
+    content => template('data/plex/plexmediaserver.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
   }
 
@@ -63,7 +63,7 @@ class profile::ditto {
 
   file {'/usr/lib/systemd/system/deluge.service':
     ensure  => file,
-    content => template('deluge/deluge.service.epp'),
+    content => template('data/deluge/deluge.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
   }
 
@@ -114,7 +114,7 @@ class profile::ditto {
   # {{{ couchpotato
   file {'/usr/lib/systemd/system/couchpotato.service':
     ensure  => file,
-    content => template('couchpotato/couchpotato.service.epp'),
+    content => template('data/couchpotato/couchpotato.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
   }
 

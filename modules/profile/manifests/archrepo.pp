@@ -11,7 +11,7 @@ class profile::archrepo {
 
   file { '/etc/nginx/nginx.conf':
     ensure  => file,
-    content => template('archrepo/nginx.conf.epp'),
+    content => template('data/archrepo/nginx.conf.epp'),
     require => Package['nginx'],
     notify  => Service['nginx'],
   }
@@ -24,7 +24,7 @@ class profile::archrepo {
   } ->
   file { '/etc/nginx/sites-available/arch.repo.alan-jenkins.com.conf':
     ensure  => file,
-    content => template('archrepo/arch.repo.alan-jenkins.com.conf.epp'),
+    content => template('data/archrepo/arch.repo.alan-jenkins.com.conf.epp'),
     require => Package['nginx'],
     notify  => Service['nginx'],
   } ->
@@ -80,4 +80,3 @@ class profile::archrepo {
     require => File['/srv/http/repo/arch'],
   }
 }
-

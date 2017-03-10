@@ -48,7 +48,7 @@ class profile::base {
 
     file { '/etc/pacman.conf':
         ensure  => file,
-        content => template('arch/pacman.conf.epp'),
+        content => template('data/arch/pacman.conf.epp'),
         notify  => Exec['pacman-Sy'],
     }
 
