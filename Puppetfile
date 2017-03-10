@@ -1,5 +1,9 @@
 forge 'forge.puppetlabs.com'
 
+# Local modules
+mod 'data', :local => true
+mod 'site', :path => true
+
 # Forge Modules
 mod "puppetlabs/firewall"
 mod "saz/locales"
