@@ -157,5 +157,11 @@ class profile::base {
     package {'sysinternals':
       ensure => latest,
     }
+    package {'javaruntime':
+      ensure => latest,
+    }
+    package {'sourcetree':
+      ensure => latest,
+    }
   }
 }
