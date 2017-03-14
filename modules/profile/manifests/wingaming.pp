@@ -38,4 +38,8 @@ class profile::wingaming {
   package {'teamspeak':
     ensure => latest,
   }
+  
+  package {'obs-studio':
+    ensure => latest,
+  }
 }
