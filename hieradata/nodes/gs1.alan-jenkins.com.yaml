@@ -6,3 +6,5 @@ classes:
 docker::images::images:
     demon012/minecraft-direwolf20:
         image_tag: 'latest'
+    demon012/minecraft-skyfactory3:
+        image_tag: 'latest'
