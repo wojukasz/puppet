@@ -1,3 +1,9 @@
+provider "aws" {
+    region = "eu-west-1"
+    shared_credentials_file = "/home/alan/.config/aws/creds"
+
+}
+
 data "aws_route53_zone" "ajenkinscom" {
     name = "alan-jenkins.com."
 }
