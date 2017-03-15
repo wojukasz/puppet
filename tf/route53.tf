@@ -18,8 +18,8 @@ resource "aws_route53_record" "skyfactory3A" {
 
 resource "aws_route53_record" "skyfactory3SRV" {
     zone_id = "${data.aws_route53_zone.ajenkinscom.zone_id}"
-    name = "skyfactory3.alan-jenkins.com"
+    name = "_minecraft._tcp.skyfactory3.alan-jenkins.com"
     type = "SRV"
     ttl = "60"
-    records = ["1 1 25566 _minecraft._tcp.skyfactory3.alan-jenkins.com"]
+    records = ["100 1 25566 skyfactory3.alan-jenkins.com"]
 }
