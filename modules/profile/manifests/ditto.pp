@@ -3,12 +3,12 @@ class profile::ditto {
     ensure => running,
   }
   package {'openvpn':
-    ensure => latest,
+    ensure => absent,
   }
 
   service {'openvpn-client@client.service':
-    ensure  => running,
-    enable  => true,
+    ensure  => stopped,
+    enable  => false,
     require => Package['openvpn'],
   }
 
@@ -69,7 +69,7 @@ class profile::ditto {
 
   file {'/etc/nginx/sites-available/deluge.conf':
     ensure  => file,
-    content => epp('deluge/deluge.conf.epp'),
+    content => epp('data/nginx/deluge.conf.epp'),
   } ->
   file {'/etc/nginx/sites-enabled/deluge.conf':
     ensure => link,
@@ -146,15 +146,15 @@ class profile::ditto {
   }
   # }}}
 
-  # file {'/usr/lib/systemd/system/sickrage.service':
-  #   ensure  => file,
-  #   content => template('sickrage/sickrage.service.epp'),
-  #   notify  => Exec['systemctrl daemon-reload'],
-  # }
+  file {'/usr/lib/systemd/system/sickrage.service':
+    ensure  => file,
+    content => template('sickrage/sickrage.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
 
-  # file {'/usr/lib/systemd/system/headphones.service':
-  #   ensure  => file,
-  #   content => template('headphones/headphones.service.epp'),
-  #   notify  => Exec['systemctrl daemon-reload'],
-  # }
+  file {'/usr/lib/systemd/system/headphones.service':
+    ensure  => file,
+    content => template('headphones/headphones.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
 }
