@@ -7,9 +7,11 @@ classes:
 docker::images::images:
     plexinc/pms-docker:
         image_tag: 'latest'
-    linuxserver/deluge:
+    binhex/arch-delugevpn:
         image_tag: 'latest'
     linuxserver/sickrage:
         image_tag: 'latest'
     linuxserver/couchpotato:
+        image_tag: 'latest'
+    linuxserver/headphones:
         image_tag: 'latest'
