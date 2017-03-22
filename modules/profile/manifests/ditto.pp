@@ -1,4 +1,12 @@
 class profile::ditto {
+  package {'docker':
+    ensure => latest,
+  }
+  service {'docker':
+    ensure => running,
+    enable => true,
+    require => Package['docker'],
+  }
   package {'nginx':
     ensure => latest,
   }
@@ -38,6 +46,7 @@ class profile::ditto {
     ensure  => running,
     enable => true,
     require => [
+        Service['docker'],
         File['/srv/plex/data'],
         File['/srv/plex/database'],
         File['/srv/plex/transcode']
@@ -117,6 +126,7 @@ class profile::ditto {
     ensure => running,
     enable => true,
     require => [
+        Service['docker'],
         User['deluge'],
         File['/srv/deluge/config'],
         File['/srv/deluge/downloads'],
@@ -151,7 +161,12 @@ class profile::ditto {
   service {'couchpotato':
     ensure  => running,
     enable  => true,
-    require => [ User['couchpotato'], File['/usr/lib/systemd/system/couchpotato.service'], File['/srv/couchpotato/config'] ]
+    require => [
+        User['couchpotato'],
+        File['/usr/lib/systemd/system/couchpotato.service'],
+        File['/srv/couchpotato/config'],
+        Service['docker'],
+    ]
   }
   # }}}
 
