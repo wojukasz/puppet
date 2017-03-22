@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name deluge deluge.local deluge.home.alan-jenkins.com;
+    server_name deluge deluge.home.alan-jenkins.com;
 
     location / {
             proxy_pass       http://localhost:8112;

@@ -1,10 +1,10 @@
 server {
     listen 80;
-    server_name deluge deluge.local deluge.home.alan-jenkins.com;
+    server_name couchpotato couchpotato.local couchpotato.home.alan-jenkins.com;
 
     location / {
-            proxy_pass       http://localhost:8112;
+            proxy_pass       http://localhost:5050;
             proxy_set_header Host      $host;
             proxy_set_header X-Real-IP $remote_addr;
-        }
+    }
 }
