@@ -17,7 +17,7 @@ ExecStart=/usr/bin/docker run --rm --name plex -e PUID=421 -e PGUID=421 \
           -p 32414:32414/udp \
           -e TZ="Europe/London" \
           -e PLEX_CLAIM="claim-Ct6PkJHCVcWA9moLeQp1" \
-          -e ADVERTISE_IP="http://192.168.1.5:32400/" \
+          -e ADVERTISE_IP="http://192.168.0.6:32400/" \
           -h ditto.home.alan-jenkins.com \
           -v /srv/plex/database:/config \
           -v /srv/plex/transcode:/transcode \

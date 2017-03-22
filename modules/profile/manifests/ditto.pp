@@ -1,6 +1,12 @@
 class profile::ditto {
+  package {'nginx':
+    ensure => latest,
+  }
+
   service {'nginx':
     ensure => running,
+    enable => true,
+    require => Package['nginx'],
   }
   package {'openvpn':
     ensure => absent,
@@ -12,11 +18,6 @@ class profile::ditto {
     require => Package['openvpn'],
   }
 
-  file {'/usr/lib/systemd/system/plexmediaserver.service':
-    ensure  => file,
-    content => template('data/plex/plexmediaserver.service.epp'),
-    notify  => Exec['systemctrl daemon-reload'],
-  }
 
   exec {'systemctrl daemon-reload':
     command     => "/usr/bin/systemctl daemon-reload",
@@ -27,10 +28,20 @@ class profile::ditto {
     # notify      => Service['sickrage'],
     refreshonly => true,
   }
-
+/*{{{ Plex */
+  file {'/usr/lib/systemd/system/plexmediaserver.service':
+    ensure  => file,
+    content => template('data/plex/plexmediaserver.service.epp'),
+    notify  => Exec['systemctrl daemon-reload'],
+  }
   service {'plexmediaserver':
     ensure  => running,
     enable => true,
+    require => [
+        File['/srv/plex/data'],
+        File['/srv/plex/database'],
+        File['/srv/plex/transcode']
+    ]
   }
 
   file {'/srv/plex':
@@ -59,43 +70,35 @@ class profile::ditto {
     group    => 'plex',
     mode     => '0775',
     require  => File['/srv/plex'],
-  }
-
+  }/*}}}*/
+/*{{{ Deluge */
   file {'/usr/lib/systemd/system/deluge.service':
     ensure  => file,
     content => template('data/deluge/deluge.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
   }
-
   file {'/etc/nginx/sites-available/deluge.conf':
     ensure  => file,
     content => epp('data/nginx/deluge.conf.epp'),
-  } ->
+  }
   file {'/etc/nginx/sites-enabled/deluge.conf':
     ensure => link,
     source => '/etc/nginx/sites-available/deluge.conf',
+    require => File['/etc/nginx/sites-available/deluge.conf'],
     notify => Service['nginx']
   }
-
   user {'deluge':
     ensure => present,
     uid    => '125',
     gid    => '125',
     system => true,
   }
-
-  service {'deluge':
-    ensure => running,
-    enable => true,
-  }
-
   file {'/srv/deluge':
     ensure => directory,
     owner  => '125',
     group  => '125',
     mode   => '0775',
   }
-
   file {'/srv/deluge/config':
     ensure  => directory,
     owner   => '125',
@@ -103,7 +106,6 @@ class profile::ditto {
     mode    => '0775',
     require => File['/srv/deluge'],
   }
-
   file {'/srv/deluge/downloads':
     ensure  => directory,
     owner   => '125',
@@ -111,26 +113,34 @@ class profile::ditto {
     mode    => '0775',
     require => File['/srv/deluge'],
   }
-  # {{{ couchpotato
+  service {'deluge':
+    ensure => running,
+    enable => true,
+    require => [
+        User['deluge'],
+        File['/srv/deluge/config'],
+        File['/srv/deluge/downloads'],
+        File['/usr/lib/systemd/system/deluge.service'],
+    ]
+  }
+  /*}}}*/
+  # {{{ Couchpotato
   file {'/usr/lib/systemd/system/couchpotato.service':
     ensure  => file,
     content => template('data/couchpotato/couchpotato.service.epp'),
     notify  => Exec['systemctrl daemon-reload'],
   }
-
   user {'couchpotato':
     ensure => present,
     uid    => '1004',
     gid    => '1004',
   }
-
   file {'/srv/couchpotato':
     ensure => directory,
     owner  => 'root',
     group  => 'root',
     mode   => '0775',
   }
-
   file {'/srv/couchpotato/config':
     ensure  => directory,
     owner   => 'couchpotato',
@@ -138,7 +148,6 @@ class profile::ditto {
     mode    => '0775',
     require => File['/srv/couchpotato']
   }
-
   service {'couchpotato':
     ensure  => running,
     enable  => true,
@@ -146,15 +155,15 @@ class profile::ditto {
   }
   # }}}
 
-  file {'/usr/lib/systemd/system/sickrage.service':
-    ensure  => file,
-    content => template('sickrage/sickrage.service.epp'),
-    notify  => Exec['systemctrl daemon-reload'],
-  }
+  /* file {'/usr/lib/systemd/system/sickrage.service': */
+  /*   ensure  => file, */
+  /*   content => template('sickrage/sickrage.service.epp'), */
+  /*   notify  => Exec['systemctrl daemon-reload'], */
+  /* } */
 
-  file {'/usr/lib/systemd/system/headphones.service':
-    ensure  => file,
-    content => template('headphones/headphones.service.epp'),
-    notify  => Exec['systemctrl daemon-reload'],
-  }
+  /* file {'/usr/lib/systemd/system/headphones.service': */
+  /*   ensure  => file, */
+  /*   content => template('headphones/headphones.service.epp'), */
+  /*   notify  => Exec['systemctrl daemon-reload'], */
+  /* } */
 }
