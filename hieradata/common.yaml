@@ -66,6 +66,11 @@ profile::desktop::desktop_packages:
     - xdot
     - xorg-server
 
+profile::desktop::desktop_packages_removed:
+    - dmenu-manjaro
+    - gnu-netcat
+    - libreoffice-still
+
 profile::libvirt_kvm::libvirt_kvm_packages:
     - bridge-utils
     - dnsmasq
