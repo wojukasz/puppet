@@ -5,7 +5,7 @@ defaults:
   data_hash: yaml_data
 hierarchy:
   - name: "Per-node data"
-    path: "nodes/%{trusted.certname}.yaml"
+    path: "nodes/%{::hostname}.yaml"
   # - name: "Environment specific data"
   #   path: "environment/%{server_facts.environment}.yaml"
   - name: "Virtualised / Non Virtualised specific data."
