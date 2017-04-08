@@ -7,7 +7,6 @@ mod 'profile', :local => true
 
 # Forge Modules
 mod "puppetlabs/firewall"
-mod "saz/locales"
 mod 'badgerious-windows_env', '2.2.2'
 mod 'bashtoni-timezone', '1.0.0'
 mod 'bodgit-avahi', '2.0.0'
@@ -23,5 +22,6 @@ mod 'puppetlabs-rabbitmq', '5.6.0'
 mod 'puppetlabs/concat'
 mod 'puppetlabs/ntp', '4.1.0'
 mod 'puppetlabs/stdlib'
+mod 'saz-locales', '2.3.0'
 mod 'saz-sudo', '3.1.0'
 mod 'sensu-sensu', '2.1.0'

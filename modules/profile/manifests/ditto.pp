@@ -26,7 +26,6 @@ class profile::ditto {
     require => Package['openvpn'],
   }
 
-
   exec {'systemctrl daemon-reload':
     command     => "/usr/bin/systemctl daemon-reload",
     # notify      => Service['couchpotato'],
