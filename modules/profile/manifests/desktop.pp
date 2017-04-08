@@ -1,4 +1,4 @@
-class profile::alandesktop (
+class profile::desktop (
     $desktop_packages = [],
 )
 {

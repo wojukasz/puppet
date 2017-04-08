@@ -1,0 +1,4 @@
+---
+classes:
+    - profile::alandesktop
+    - profile::libvirt_kvm

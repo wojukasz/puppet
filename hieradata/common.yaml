@@ -18,7 +18,7 @@ sensu::rabitmq_host: sensu1.alan-jenkins.com
 sensu::rabbitmq_password: Testpassword123@
 sensu::rabbitmq_port: 5672
 
-desktop_packages:
+profile::desktop::desktop_packages:
     - ansible
     - aria2
     - bind-tools
@@ -66,7 +66,7 @@ desktop_packages:
     - xdot
     - xorg-server
 
-libvirt_kvm_packages:
+profile::libvirt_kvm::libvirt_kvm_packages:
     - bridge-utils
     - dnsmasq
     - ebtables
