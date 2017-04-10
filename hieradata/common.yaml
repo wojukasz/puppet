@@ -71,12 +71,14 @@ profile::desktop::desktop_packages_removed:
 
 profile::libvirt_kvm::libvirt_kvm_packages_removed:
     - gnu-netcat
+
 profile::libvirt_kvm::libvirt_kvm_packages:
     - bridge-utils
     - dnsmasq
     - ebtables
     - libvirt
     - openbsd-netcat
+    - polkit
     - qemu
     - virt-manager
 
