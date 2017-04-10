@@ -78,6 +78,7 @@ profile::libvirt_kvm::libvirt_kvm_packages:
     - ebtables
     - libvirt
     - openbsd-netcat
+    - ovmf
     - polkit
     - qemu
     - virt-manager
