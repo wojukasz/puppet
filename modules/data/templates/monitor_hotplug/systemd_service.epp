@@ -1,0 +1,11 @@
+[Unit]
+Description=Monitor hotplug
+
+[Service]
+Type=simple
+RemainAfterExit=no
+User=<%= $profile::monitor_hotplug::user -%>
+ExecStart=/usr/local/bin/monitor_hotplug
+
+[Install]
+WantedBy=multi-user.target

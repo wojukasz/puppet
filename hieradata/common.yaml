@@ -18,6 +18,9 @@ sensu::rabitmq_host: sensu1.alan-jenkins.com
 sensu::rabbitmq_password: Testpassword123@
 sensu::rabbitmq_port: 5672
 
+profile::desktop::desktop_aur_packages:
+    - google-chrome
+
 profile::desktop::desktop_packages:
     - ansible
     - aria2
@@ -35,7 +38,6 @@ profile::desktop::desktop_packages:
     - freemind
     - gimp
     - git
-    - google-chrome
     - graphviz
     - gvim
     - i3-wm
@@ -82,6 +84,14 @@ profile::libvirt_kvm::libvirt_kvm_packages:
     - polkit
     - qemu
     - virt-manager
+
+profile::monitor_hotplug::user: alan
+profile::monitor_hotplug::locations:
+    alan-home:
+        edid_md5: 9d919e0494008edc4a1879e596300196
+        internal_res: 3200x1800
+        external_pos: right
+        external_res: 3440x1440
 
 # users:
 #     alan:

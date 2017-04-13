@@ -1,0 +1,55 @@
+#!/bin/bash
+
+######################################
+## /usr/local/bin/hotplug_monitor.sh
+######################################
+X_USER=<%= $profile::monitor_hotplug::user -%>
+export DISPLAY=:0
+export XAUTHORITY=/home/$X_USER/.Xauthority
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/`id <%= $profile::monitor_hotplug::user -%> -u`/bus
+
+function connect()
+{
+    declare -A locations (
+        <% $profile::monitor_hotplug::locations.each |String $location, Hash $values| { -%>
+	["<%= $values['edid_md5'] -%>"] = ("<%= $location -%>" "<%= $values['internal_res'] -%>" "<%= $values['external_pos'] -%>" "<%= $values['external_res'] -%>")
+	<% } -%>
+    )
+    # identify monitor
+    EDID_MD5=$(md5sum <%= $profile::monitor_hotplug::ext_display_drm_path -%>/edid)
+    ## location name
+    echo "Detected location: $locations[$EDID_MD5][0]"
+    ## position of monitor relative to laptop
+    ## resolution
+    xrandr_cmd="xrandr --output <%= $profile::monitor_hotplug::int_display_name -%>"
+
+    ## set internal resolution
+    xrandr_cmd="$xrandr_cmd --mode $locations[$EDID_MD5][1]"
+
+    ## external output
+    xrandr_cmd="$xrandr_cmd --output <%= $profile::monitor_hotplug::ext_display_name -%>"
+
+    ## position of external monitor
+    if [ "$locations[$EDID_MD5][2]" == "right" ]; then
+	xrandr_cmd="$xrandr_cmd --right-of <%= $profile::monitor_hotplug::int_display_name -%>"
+    else if [ "$locations[$EDID_MD5][2]" == "left" ]; then
+	xrandr_cmd="$xrandr_cmd --left-of <%= $profile::monitor_hotplug::int_display_name -%>"
+    fi
+
+    ## external resolution
+    xrandr_cmd="$xrandr_cmd --mode $locations[$EDID_MD5][3]"
+
+    $xrandr_cmd
+}
+
+function disconnect(){
+    xrandr --output <%= $profile::monitor_hotplug::ext_display_name -%> --off
+}
+
+if [ "$(cat <%= $profile::monitor_hotplug::ext_display_drm_path -%>/status)" == "connected" ] ; then
+    connect
+elif [ "$(cat <%= $profile::monitor_hotplug::ext_display_drm_path -%>/status)" == "disconnected" ] ; then
+    disconnect
+else
+    exit
+fi

@@ -2,3 +2,4 @@
 classes:
     - profile::desktop
     - profile::libvirt_kvm
+    - profile::monitor_hotplug
