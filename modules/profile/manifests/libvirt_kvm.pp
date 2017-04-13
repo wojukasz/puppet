@@ -22,7 +22,7 @@ class profile::libvirt_kvm (
 
     file {'/etc/polkit-1/rules.d/99-libvirt.rules':
         ensure  => file,
-        content => epp('puppet:///data/libvirt/polkit_rules.epp'),
+        content => epp('data/libvirt/polkit_rules.epp'),
         owner   => 'root',
         group   => 'root',
         mode    => '0400',
