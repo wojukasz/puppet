@@ -1,0 +1,8 @@
+#!/bin/bash
+DIRECTION="$1"
+WORKSPACES=( ${@:2} )
+
+echo "Direction: $DIRECTION"
+for workspace in "${WORKSPACES[@]}"; do
+    i3-msg "workspace ${workspace}; move workspace to output ${DIRECTION}"
+done

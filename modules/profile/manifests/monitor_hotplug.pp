@@ -11,6 +11,10 @@ class profile::monitor_hotplug
     refreshonly => true,
   }
 
+  package {'jq':
+    ensure => latest,
+  }
+
   # install monitor hotplug script
   file {'/usr/local/bin/monitor_hotplug':
     ensure  => file,
@@ -37,5 +41,12 @@ class profile::monitor_hotplug
     group   => 'root',
     mode    => '0400',
     notify  => Exec['systemctl daemon-reload'],
+  }
+
+  # instill i3 move workspace script
+  file {'/usr/local/bin/i3-move-workspaces':
+    ensure  => file,
+    mode    => '0755',
+    content => epp('data/monitor_hotplug/i3_move_workspaces.epp'),
   }
 }
