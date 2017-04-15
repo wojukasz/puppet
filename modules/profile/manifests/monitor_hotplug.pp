@@ -39,8 +39,11 @@ class profile::monitor_hotplug
     content => epp('data/monitor_hotplug/systemd_service.epp'),
     owner   => 'root',
     group   => 'root',
-    mode    => '0400',
+    mode    => '0444',
     notify  => Exec['systemctl daemon-reload'],
+  } ->
+  service { 'monitor_hotplug':
+    enable    => true,
   }
 
   # instill i3 move workspace script
