@@ -17,7 +17,7 @@ class profile::monitor_hotplug
     content => epp('data/monitor_hotplug/script.epp'),
     owner   => 'root',
     group   => 'root',
-    mode    => '0744',
+    mode    => '0755',
   } ->
 
   # install udev rule
