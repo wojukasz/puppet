@@ -92,6 +92,7 @@ profile::monitor_hotplug::locations:
         internal_res: 3200x1800
         external_pos: right
         external_res: 3440x1440
+        i3_move_workspace_command: i3-move-workspaces -a -e 1 -d right
 
 # users:
 #     alan:

@@ -1,8 +1,97 @@
 #!/bin/bash
-DIRECTION="$1"
-WORKSPACES=( ${@:2} )
+display_usage() #{{{
+{
+    read -r -d '' VAR <<'ENDOFUSAGE'
+About:
+    This script allows you to move i3 workspaces to another screen.
+Usage:
+    i3-move-workspaces [OPTIONS]
+    -a, --all                    Move all workspaces.
+    -w, --workspaces             Workspaces to move.
+    -d, --direction              Direction of the monitor to move the workspaces to.
+    -e, --except                 Do not move these workspaces.
+    -h, --help                   Show this help.
+ENDOFUSAGE
+} #}}}
+#{{{ Parse options
+OPTS=$(getopt -o hd:w:e:a --longoptions help,direction:,workspaces:,except:,all -n 'parse-options' -- "$@")
+if [ $? -ne 0 ];
+then
+    display_usage
+    exit 1
+fi
+
+eval set -- "$OPTS"
+
+while true;
+do
+    case "$1" in
+        -h|--help)
+            display_usage
+            exit 0
+            shift;;
+        -d|--direction)
+            if [ -n "$2" ];
+            then
+                DIRECTION="$2"
+            fi
+            shift 2;;
+        -w|--workspaces)
+            if [ -n "$2" ];
+            then
+                read -a WORKSPACES <<<$2
+            fi
+            shift 2;;
+        -e|--except)
+            if [ -n "$2" ];
+            then
+                read -a EXCEPT_WORKSPACES <<<$2
+            fi
+            shift 2;;
+        -a|--all)
+            WORKSPACES=( $(i3-msg -t get_workspaces | jq .[].num) )
+            shift;;
+        --)
+            shift
+            break;;
+    esac
+done
+
+if [ -z "${WORKSPACES}" ];
+then
+    echo "No workspaces defined to work on, use --all or --workspaces to state what to move."
+    exit 1
+fi
+
+#}}}
+
+CUR_WORKSPACE=$(i3-msg -t get_workspaces | jq '.[] | select(.focused==true).name' | cut -d"\"" -f2)
+
+# Filter workspaces
+if [ ! -z "$EXCEPT_WORKSPACES" ];
+then
+    for WORKSPACE in "${EXCEPT_WORKSPACES[@]}";
+    do
+        echo "Except: $WORKSPACE"
+        WORKSPACES=("${WORKSPACES[@]/$WORKSPACE}")
+    done
+fi
+
+echo "Workspaces: ${WORKSPACES[*]}"
 
 echo "Direction: $DIRECTION"
-for workspace in "${WORKSPACES[@]}"; do
-    i3-msg "workspace ${workspace}; move workspace to output ${DIRECTION}"
+for WORKSPACE in "${WORKSPACES[@]}"; do
+    if [ -n "${WORKSPACE}" ];
+    then
+        if [ "${WORKSPACE}" -eq "0" ];
+        then
+            WORKSPACE=10
+        fi
+        COMMAND="/usr/bin/i3-msg workspace ${WORKSPACE}; move workspace to output ${DIRECTION}"
+        echo "Running: '$COMMAND'"
+        $COMMAND
+    fi
 done
+
+i3-msg "workspace ${EXCEPT_WORKSPACES[0]}"
+i3-msg "workspace ${CUR_WORKSPACE}"

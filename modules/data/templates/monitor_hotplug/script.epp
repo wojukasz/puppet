@@ -16,7 +16,8 @@ function connect()
 	["<%= $values['edid_md5'] -%>:location"]="<%= $location -%>"
 	["<%= $values['edid_md5'] -%>:internal_res"]="<%= $values['internal_res'] -%>"
 	["<%= $values['edid_md5'] -%>:external_pos"]="<%= $values['external_pos'] -%>"
-	["<%= $values['edid_md5'] -%>:external_res"]="<%= $values['external_res'] -%>"<% } %>
+	["<%= $values['edid_md5'] -%>:external_res"]="<%= $values['external_res'] -%>"
+	["<%= $values['edid_md5'] -%>:i3_move_workspace_command"]="<%= $values['i3_move_workspace_command'] -%>"<% } %>
     )
 
     # identify monitor
@@ -25,6 +26,7 @@ function connect()
     INT_RES=${locations[${EDID_MD5}:internal_res]}
     EXT_POS=${locations[${EDID_MD5}:external_pos]}
     EXT_RES=${locations[${EDID_MD5}:external_res]}
+    I3MWCMD=${locations[${EDID_MD5}:i3_move_workspace_command]}
 
     ## location name
     {
@@ -56,6 +58,12 @@ function connect()
     echo "Monitor MD5: ${EDID_MD5}" >> /tmp/monitor_hotplug.log
     echo "Running command: ${xrandr_cmd}" >> /tmp/monitor_hotplug.log
     $xrandr_cmd
+
+    # Move i3 workspaces.
+    if [ -n "${I3MWCMD}" ];
+    then
+	$I3MWCMD
+    fi
 }
 
 function disconnect(){
