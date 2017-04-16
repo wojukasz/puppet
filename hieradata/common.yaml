@@ -86,20 +86,6 @@ profile::libvirt_kvm::libvirt_kvm_packages:
     - virt-manager
 
 profile::monitor_hotplug::user: alan
-profile::monitor_hotplug::locations:
-    alan-home:
-        edid_md5: 9d919e0494008edc4a1879e596300196
-        internal_res: 3200x1800
-        external_pos: right
-        external_res: 3440x1440
-        i3_move_workspace_command: i3-move-workspaces -a -e 1 -d right
-    alan-work:
-        edid_md5: 9d919e0494008edc4a1879e596300196
-        internal_res: 3200x1800
-        external_pos: right
-        external_res: 3440x1440
-        i3_move_workspace_command: i3-move-workspaces -a -e 1 -d right
-
 
 # users:
 #     alan:
