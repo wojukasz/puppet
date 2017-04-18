@@ -88,7 +88,7 @@ profile::libvirt_kvm::libvirt_kvm_packages:
 
 profile::monitor_hotplug::user: alan
 
-users:
+profile::base::users:
     alan:
         ensure: present
         uid: 1000
