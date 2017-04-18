@@ -1,10 +1,9 @@
 class profile::base (
-  $users = {},
 )
 {
   if $facts['os']['family'] == 'linux' {
     class {'::ntp': }
-    users { $users: }
+    users { $sysadmins: }
     include sudo
     include sudo::configs
 
