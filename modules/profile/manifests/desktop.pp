@@ -3,4 +3,9 @@ class profile::desktop (
 )
 {
     package { $desktop_packages: ensure => latest }
+
+    service { 'lightdm':
+        enable  => true,
+        require => Package['lightdm']
+    }
 }
