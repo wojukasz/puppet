@@ -45,6 +45,7 @@ profile::desktop::desktop_packages:
     - i3status
     - inkscape
     - iotop
+    - keepass
     - libreoffice-fresh-en-GB
     - lightdm
     - lightdm-gtk-greeter
