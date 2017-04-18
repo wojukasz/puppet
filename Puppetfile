@@ -16,8 +16,10 @@ mod 'garethr-docker', '5.3.0'
 mod 'joshuar-duply', '0.1.1'
 mod 'lwf-remote_file', '0.1.0'
 mod 'mthibaut/users'
+# mod 'users',
+#   :git => 'https://github.com/alanjjenkins/puppet-users'
 mod 'users',
-  :git => 'https://github.com/alanjjenkins/puppet-users'
+  :git => 'https://github.com/mthibaut/puppet-users'
 mod 'puppetlabs-apt', '2.3.0'
 mod 'puppetlabs-powershell', '2.1.0'
 mod 'puppetlabs-rabbitmq', '5.6.0'
