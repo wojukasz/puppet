@@ -1,7 +1,7 @@
 class profile::base (
 )
 {
-  if $facts['os']['family'] == 'linux' {
+  if $facts['os']['family'] =~ /linux$/ {
     class {'::ntp': }
     $mytest = hiera("users_sysadmins", "not found")
     notify { "$mytest": }
