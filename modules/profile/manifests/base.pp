@@ -52,8 +52,8 @@ class profile::base (
       match  => '^FallbackNTP=',
     } ->
     exec { 'systemd-timesyncd':
-      command => "timedatectl set-ntp true",
-      unless  => 'timedatectl status | grep \'NTP synchronised yes'
+      command => "/usr/bin/timedatectl set-ntp true",
+      unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
     }
   }
   elsif $facts['os']['family'] == 'windows' {
