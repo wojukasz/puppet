@@ -2,7 +2,7 @@ class profile::base (
 )
 {
   if $facts['os']['family'] =~ /linux$/ {
-    users { sysadmins: }
+    # users { sysadmins: }
     include sudo
     include sudo::configs
 
