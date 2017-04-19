@@ -39,6 +39,8 @@ class profile::base (
       ensure => present,
     }
 
+    class { 'timezone': }
+
     file_line { 'NTP config':
       ensure => present,
       path   => '/etc/systemd/timesyncd.conf',
@@ -55,6 +57,7 @@ class profile::base (
       command => "/usr/bin/timedatectl set-ntp true",
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
     }
+
   }
   elsif $facts['os']['family'] == 'windows' {
     include stdlib
