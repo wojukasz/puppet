@@ -2,7 +2,6 @@ class profile::base (
 )
 {
   if $facts['os']['family'] =~ /linux$/ {
-    class {'::ntp': }
     users { sysadmins: }
     include sudo
     include sudo::configs
@@ -38,6 +37,23 @@ class profile::base (
       'tmux'
     ]:
       ensure => present,
+    }
+
+    file_line { 'NTP config':
+      ensure => present,
+      path   => '/etc/systemd/timesyncd.conf',
+      line   => 'NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org',
+      match  => '^NTP=',
+    } ->
+    file_line { 'NTP config fallback':
+      ensure => present,
+      path   => '/etc/systemd/timesyncd.conf',
+      line   => 'FallbackNTP=0.pool.ntp.org 1.pool.ntp.org 0.fr.pool.ntp.org',
+      match  => '^FallbackNTP=',
+    } ->
+    exec { 'systemd-timesyncd':
+      command => "timedatectl set-ntp true",
+      unless  => 'timedatectl status | grep \'NTP synchronised yes'
     }
   }
   elsif $facts['os']['family'] == 'windows' {
