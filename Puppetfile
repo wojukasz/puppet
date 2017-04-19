@@ -8,7 +8,9 @@ mod 'site', :local => true
 # Forge Modules
 mod "puppetlabs/firewall"
 mod 'badgerious-windows_env', '2.2.2'
-mod 'bashtoni-timezone', '1.0.0'
+# mod 'bashtoni-timezone', '1.0.0'
+mod 'bashtoni-timezone',
+  :git => 'https://github.com/bashton-ajenkins/puppet-timezone.git'
 mod 'bodgit-avahi', '2.0.0'
 mod 'camptocamp-systemd', '0.4.0'
 mod 'chocolatey-chocolatey', '1.2.6'
