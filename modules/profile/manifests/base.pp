@@ -1,31 +1,22 @@
 class profile::base (
+  $ntp_servers = [],
+  $fallback_ntp_servers = [],
+  $base_packages = [],
 )
 {
   if $facts['os']['family'] =~ /linux$/ {
-    # users { sysadmins: }
-    include sudo
-    include sudo::configs
-
-    sudo::conf { 'wheel':
-        priority => 10,
-        content  => '%wheel ALL=(ALL) ALL',
-    }
-
-    package { 'fish':
-      ensure => 'present'
-    }
-
+    # {{{ Define refresh packages command
+    exec {'pacman-Sy':
+        command     => '/usr/bin/pacman -Sy',
+        refreshonly => true,
+    } # }}}
+    # {{{ Add my custom Arch repository
     file { '/etc/pacman.conf':
         ensure  => file,
         content => template('data/arch/pacman.conf.epp'),
         notify  => Exec['pacman-Sy'],
-    }
-
-    exec {'pacman-Sy':
-        command     => '/usr/bin/pacman -Sy',
-        refreshonly => true,
-    }
-
+    } # }}}
+    # {{{ Install packages that should be on all machines.
     package {[
       'augeas',
       'ruby-augeas',
@@ -37,8 +28,8 @@ class profile::base (
       'tmux'
     ]:
       ensure => present,
-    }
-
+    } # }}}
+# {{{ Sort out timesync and timezones
     class { 'timezone': }
 
     file_line { 'NTP config':
@@ -56,10 +47,9 @@ class profile::base (
     exec { 'systemd-timesyncd':
       command => "/usr/bin/timedatectl set-ntp true",
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
-    }
-
+    }# }}}
   }
-  elsif $facts['os']['family'] == 'windows' {
+  elsif $facts['os']['family'] == 'windows' {# {{{
     include stdlib
     include chocolatey
 
@@ -143,5 +133,5 @@ class profile::base (
     package {'sourcetree':
       ensure => latest,
     }
-  }
+  }# }}}
 }

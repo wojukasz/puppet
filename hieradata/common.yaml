@@ -2,22 +2,23 @@
 classes:
     - 'profile::base'
 
-ntp::servers:
+# {{{ Timezone settings
+timezone::region: 'Europe'
+timezone::locality: 'London'
+# }}}
+# {{{ NTP Settings
+profile::base::ntp_servers:
     - 0.uk.pool.ntp.org
     - 1.uk.pool.ntp.org
     - 2.uk.pool.ntp.org
     - 3.uk.pool.ntp.org
 
-timezone::region: 'Europe'
-timezone::locality: 'London'
-
-sensu::purge:
-    config: true
-
-sensu::rabitmq_host: sensu1.alan-jenkins.com
-sensu::rabbitmq_password: Testpassword123@
-sensu::rabbitmq_port: 5672
-
+profile::base::fallback_ntp_servers:
+    - 0.pool.ntp.org
+    - 1.pool.ntp.org
+    - 0.fr.pool.ntp.org
+# }}}
+# {{{ Desktop packages
 profile::desktop::desktop_aur_packages:
     - google-chrome
 
@@ -71,7 +72,8 @@ profile::desktop::desktop_packages:
 profile::desktop::desktop_packages_removed:
     - dmenu-manjaro
     - libreoffice-still
-
+# }}}
+# {{{ Libvirt
 profile::libvirt_kvm::libvirt_kvm_packages_removed:
     - gnu-netcat
 
@@ -85,9 +87,8 @@ profile::libvirt_kvm::libvirt_kvm_packages:
     - polkit
     - qemu
     - virt-manager
-
-profile::monitor_hotplug::user: alan
-
+# }}}
+# {{{ User accounts
 users_sysadmins:
     alan:
         ensure: present
@@ -110,18 +111,6 @@ users_sysadmins:
             mobile_key:
                 type: ssh-rsa
                 key: AAAAB3NzaC1yc2EAAAADAQABAAACAQC59zQ+PHIwFrrqupgKl/lQOCXGAbPOgnWWt1dP7Y3v3Si+l+3PI8Ie+HjerZvXrIx2t/6w4lZQxY7WuRk2nZ2F0mbhhqZsIf1Y042FLinCV6Z+ea3g/g+F3tYB0pHHdK49lUKFqpJKas3gxdFWXBuSPjFh+Mmbq/ipVNexl82MyScdUWj/sZSgxQ+TIxLIImwx0XIZOX5YtMJX+li4NeXyiNVAlnb8Km6mkIFXs/wVmU3k1+2jXVy+mdc/fJ6QT+WAsVQuBbX6qizf0A82csmT2hEwo58ynca6DN5CB69NREi3WhbTyzz422P/M5DLOvsIV5GbflFd4edjPN7w1wUx0gkwaldr/aNhgeKrr4m1NvLhZFvNDSRTvCxYHxQ9jCoPxL1l48SEiUh7HUwUkwV79fp2kq3cRozMJ5goLPDFxfJud6Ypqi9FFEaTcClWp9Vh2nDN+o3c/LIKRLzI1/0XpLLeco4oT9HJh0ajPedU1Aldoe9cEBkfoyL04+1X77brZM3WXe5NZCoztbhnIuUI87wE/N1lPkHr2nDtxgsesTyrZFhcG/EarrnGS7stOtroHrmfnFU2hHRWzqYNg5nnCPACGOArok7Z4PsusCZ/gWMxThx9Kw2L7XZV5tjn7At3re+EbJSv/TnYtfHJEigQTOJ32zobYB19xYCpOaSaaw==
+# }}}
 
-# sensu::client: true
-# sensu::server: false
-
-# sensu::handlers:
-#   'graphite':
-#     type: 'tcp'
-#     socket:
-#       host: '127.0.0.1'
-#       port: '2003'
-#     mutator: "only_check_output"
-#   'file':
-#     command: '/etc/sensu/handlers/file.rb'
-#   'mail':
-#     command: 'mail -s 'Sensu Event' alan.james.jenkins@gmail.com'
+profile::monitor_hotplug::user: alan
