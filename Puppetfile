@@ -4,6 +4,7 @@ forge 'forge.puppetlabs.com'
 mod 'data', :local => true
 mod 'profile', :local => true
 mod 'site', :local => true
+mod "users", :local => true
 
 # Forge Modules
 # mod 'bashtoni-timezone', '1.0.0'
@@ -11,7 +12,6 @@ mod 'site', :local => true
 mod "puppetlabs/firewall"
 mod 'badgerious-windows_env', '2.2.2'
 mod 'bodgit-avahi', '2.0.0'
-mod 'camptocamp-accounts', '1.9.0'
 mod 'camptocamp-systemd', '0.4.0'
 mod 'chocolatey-chocolatey', '1.2.6'
 mod 'garethr-docker', '5.3.0'
