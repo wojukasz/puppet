@@ -4,7 +4,7 @@ forge 'forge.puppetlabs.com'
 mod 'data', :local => true
 mod 'profile', :local => true
 mod 'site', :local => true
-mod "users", :local => true
+mod "account", :local => true
 
 # Forge Modules
 # mod 'bashtoni-timezone', '1.0.0'
