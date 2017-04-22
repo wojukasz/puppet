@@ -2,6 +2,7 @@ class profile::base (
   $ntp_servers = [],
   $fallback_ntp_servers = [],
   $base_packages = [],
+  $user_accounts = {},
 )
 {
   if $facts['os']['family'] =~ /linux$/ {
@@ -48,6 +49,8 @@ class profile::base (
       command => "/usr/bin/timedatectl set-ntp true",
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
     }# }}}
+    account {:
+    }
   }
   elsif $facts['os']['family'] == 'windows' {# {{{
     include stdlib
