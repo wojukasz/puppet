@@ -57,10 +57,10 @@ define account (
       $user_dotfiles_provider = "git"
     }
 
-    if has_key($user_hash, 'dotfiles_command') {
-      $user_dotfiles_command = $user_hash['dotfiles_command']
+    if has_key($user_hash, 'dotfiles_commands') {
+      $user_dotfiles_commands = $user_hash['dotfiles_commands']
     } else {
-      $user_dotfiles_command = undef
+      $user_dotfiles_commands = undef
     }
 
     if has_key($user_hash, 'user_allowdupe') {
@@ -344,24 +344,25 @@ define account (
     # }}}
     # {{{ Dotfiles code
     if $user_dotfiles_repo {
-      if $user_dotfiles_command {
-        $sudo_user_dotfiles_command = "/usr/bin/sudo -u $user_name $user_dotfiles_command"
-        $vcs_notify  = Exec[$sudo_user_dotfiles_command]
+      if $user_dotfiles_commands {
+        $vcs_notify = Exec[$user_dotfiles_commands]
       }
       vcsrepo {$user_dotfiles_path:
         ensure   => latest,
+        owner    => $user_name,
+        group    => $group,
         provider => $user_dotfiles_provider,
         source   => $user_dotfiles_repo,
         revision => $user_dotfiles_revision,
         require  => File[$user_home],
         notify   => $vcs_notify,
       }
-      if $sudo_user_dotfiles_command {
-        exec {$sudo_user_dotfiles_command:
+      if $user_dotfiles_commands {
+        exec {$user_dotfiles_commands:
           refreshonly => true,
         }
       }
-      # }}}
-      }
+    }
+    # }}}
   }
 }
