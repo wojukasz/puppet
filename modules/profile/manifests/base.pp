@@ -49,7 +49,7 @@ class profile::base (
       command => "/usr/bin/timedatectl set-ntp true",
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronized: yes\''
     }# }}}
-
+  # {{{ sudo configuration
     file { '/etc/sudoers.d/wheel':
       ensure => file,
       owner  => 'root',
@@ -62,9 +62,12 @@ class profile::base (
       path   => '/etc/sudoers.d/wheel',
     }
 
+    # }}}
+    # {{{ User creation
     account {'users':
       users => $user_accounts
     }
+    # }}}
   }
   elsif $facts['os']['family'] == 'windows' {# {{{
     include stdlib

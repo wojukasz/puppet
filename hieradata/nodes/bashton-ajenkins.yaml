@@ -1,6 +1,7 @@
 ---
 classes:
     - profile::desktop
+    - profile::i3_desktop
     - profile::libvirt_kvm
     - profile::monitor_hotplug
     - profile::networkmanager
