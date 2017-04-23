@@ -5,6 +5,8 @@ mod 'data', :local => true
 mod 'profile', :local => true
 mod 'site', :local => true
 mod "account", :local => true
+mod "aurpkg", :local => true
+mod "aur_key_trust", :local => true
 
 # Forge Modules
 # mod 'bashtoni-timezone', '1.0.0'

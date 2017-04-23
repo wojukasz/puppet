@@ -1,0 +1,72 @@
+define aurpkg (
+) {
+  # {{{ Install cower
+  notify {'entered aurpkg code': }
+  exec { '/usr/bin/curl https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz -o /tmp/cower.tar.gz':
+    unless => '/usr/bin/pacman -Qi cower'
+  } ->
+  exec { '/usr/bin/tar xvf /tmp/cower.tar.gz':
+    cwd    => '/tmp/',
+    onlyif => '/usr/bin/ls /tmp/cower.tar.gz',
+    unless => '/usr/bin/pacman -Qi cower'
+  } ->
+  file { '/tmp/cower':
+    ensure  => directory,
+    owner   => 'packager',
+    mode    => '0777',
+    require => Exec['/usr/bin/tar xvf /tmp/cower.tar.gz']
+  } ->
+  exec { 'makepkg cower':
+    command => '/usr/bin/makepkg',
+    cwd  => '/tmp/cower',
+    user => 'packager',
+    unless => '/usr/bin/pacman -Qi cower'
+  } ->
+  exec { '/usr/bin/pacman -U cower.*.pkg.xz':
+    unless => '/usr/bin/pacman -Qi cower'
+  } ->
+  exec { '/usr/bin/rm -Rf /tmp/cower':
+    onlyif => '/usr/bin/ls /tmp/cower'
+  }
+  # }}}
+  # {{{ Install pacaur
+  exec { '/usr/bin/curl https://aur.archlinux.org/cgit/aur.git/snapshot/pacaur.tar.gz -o /tmp/pacaur.tar.gz':
+    unless => '/usr/bin/pacman -Qi pacaur'
+  } ->
+  exec { '/usr/bin/tar xvf /tmp/pacaur.tar.gz':
+    cwd    => '/tmp/',
+    onlyif => '/usr/bin/ls /tmp/pacaur.tar.gz',
+    unless => '/usr/bin/pacman -Qi pacaur'
+  } ->
+  file { '/tmp/pacaur':
+    ensure  => directory,
+    owner   => 'packager',
+    mode    => '0777',
+    require => Exec['/usr/bin/tar xvf /tmp/pacaur.tar.gz']
+  } ->
+  exec { 'makepkg pacaur':
+    command => '/usr/bin/makepkg',
+    cwd     => '/tmp/pacaur',
+    user    => 'packager',
+    unless  => '/usr/bin/pacman -Qi pacaur'
+  } ->
+  exec { '/usr/bin/pacman -U pacaur.*.pkg.xz':
+    unless => '/usr/bin/pacman -Qi pacaur'
+  } ->
+  exec { '/usr/bin/rm -Rf /tmp/pacaur':
+    onlyif => '/usr/bin/ls /tmp/pacaur'
+  }
+  # }}}
+  # {{{ if package not installed
+  # }}}
+  # {{{ if package already installed
+  ## Get current installed version
+  ## Get latest version
+  # exec {"/usr/bin/curl https://aur.archlinux.org/rpc/?v=5&type=info&arg[]=$title":
+  # }
+
+  ## If latest version newer than installed version
+
+
+  # }}}
+}
