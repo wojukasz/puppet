@@ -50,6 +50,11 @@ class profile::base (
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronized: yes\''
     }# }}}
 
+    file_line { 'wheel sudo access':
+      line => '%wheel ALL=(ALL) ALL',
+      path => '/etc/sudoers.d/wheel',
+    }
+
     account {'users':
       users => $user_accounts
     }
