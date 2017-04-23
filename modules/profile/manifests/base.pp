@@ -49,7 +49,9 @@ class profile::base (
       command => "/usr/bin/timedatectl set-ntp true",
       unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
     }# }}}
-    account {:
+
+    account {'users':
+      users => $user_accounts
     }
   }
   elsif $facts['os']['family'] == 'windows' {# {{{

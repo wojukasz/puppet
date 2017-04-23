@@ -2,7 +2,6 @@ define account (
   Hash $users = {},
 ) {
   $users.each | String $user_name, Hash $user_hash | {
-
     # {{{ Default value code
     if has_key($user_hash, 'ensure') {
       $ensure = $user_hash['ensure']
@@ -10,10 +9,10 @@ define account (
       $ensure = present
     }
 
-    if has_key($user_hash, 'primary_group') {
-      $primary_group = $user_hash['primary_group']
+    if has_key($user_hash, 'group') {
+      $group = $user_hash['group']
     } else {
-      $primary_group = $user_name
+      $group = $user_name
     }
 
     if has_key($user_hash, 'groups') {
@@ -46,16 +45,22 @@ define account (
       $user_dotfiles_repo = undef
     }
 
-    if has_key($user_hash, 'user_dotfiles_path') {
-      $user_dotfiles_path = $user_hash['user_dotfiles_path']
+    if has_key($user_hash, 'dotfiles_path') {
+      $user_dotfiles_path = $user_hash['dotfiles_path']
     } else {
       $user_dotfiles_path = undef
     }
 
-    if has_key($user_hash, 'user_dotfiles_provider') {
-      $user_dotfiles_provider = $user_hash['user_dotfiles_provider']
+    if has_key($user_hash, 'dotfiles_provider') {
+      $user_dotfiles_provider = $user_hash['dotfiles_provider']
     } else {
       $user_dotfiles_provider = "git"
+    }
+
+    if has_key($user_hash, 'dotfiles_command') {
+      $user_dotfiles_command = $user_hash['dotfiles_command']
+    } else {
+      $user_dotfiles_command = undef
     }
 
     if has_key($user_hash, 'user_allowdupe') {
@@ -208,6 +213,30 @@ define account (
       $user_salt = undef
     }
 
+    if has_key($user_hash, 'user_attributes') {
+      $user_attributes = $user_hash['user_attributes']
+    } else {
+      $user_attributes = undef
+    }
+
+    if has_key($user_hash, 'user_auth_membership') {
+      $user_auth_membership = $user_hash['user_auth_membership']
+    } else {
+      $user_auth_membership = undef
+    }
+
+    if has_key($user_hash, 'user_provider') {
+      $user_provider = $user_hash['user_provider']
+    } else {
+      $user_provider = undef
+    }
+
+    if has_key($user_hash, 'user_dotfiles_revision') {
+      $user_dotfiles_revision = $user_hash['user_dotfiles_revision']
+    } else {
+      $user_dotfiles_revision = undef
+    }
+
     if has_key($user_hash, 'user_shell' ) {
       $user_shell = $user_hash['user_shell']
     } else {
@@ -225,72 +254,114 @@ define account (
     } else {
       $user_uid = undef
     }
-
-    user {$user_name:
-      ensure => $ensure,
-      allowdupe =>  $user_allowdupe,
-      attribute_membership => $user_attribute_membership,
-      attributes => $user_attributes,
-      auth_membership => $user_auth_membership,
-      auths => $user_auths,
-      comment => $user_comment,
-      expiry => $user_expiry,
-      forcelocal => $user_forcelocal,
-      gid => $user_gid,
-      groups => $user_groups,
-      home => $user_home,
-      ia_load_module => $user_ia_load_module,
-      iterations => $user_iterations,
-      key_membership => $user_key_membership,
-      keys => $user_keys,
-      loginclass => $user_loginclass,
-      managehome => false,
-      membership => $user_membership,
-      password => $user_password,
-      password_max_age => $user_password_max_age,
-      password_min_age => $user_password_min_age,
-      profile_membership => $user_profile_membership,
-      profiles => $user_profiles,
-      project => $user_project,
-      provider => $user_provider,
-      purge_ssh_keys => $user_purge_ssh_keys,
-      role_membership => $user_role_membership,
-      roles => $user_roles,
-      salt => $user_salt,
-      shell => $user_shell,
-      system => $user_system,
-      uid => $user_uid,
+    # }}}
+    # {{{ Create primary group
+    group {$group:
+      ensure => present,
     }
-
+    # }}}
+    # {{{ Create user
+    user {$user_name:
+      ensure               => $ensure,
+      allowdupe            => $user_allowdupe,
+      attribute_membership => $user_attribute_membership,
+      attributes           => $user_attributes,
+      auth_membership      => $user_auth_membership,
+      auths                => $user_auths,
+      comment              => $user_comment,
+      expiry               => $user_expiry,
+      forcelocal           => $user_forcelocal,
+      gid                  => $user_gid,
+      groups               => $user_groups,
+      home                 => $user_home,
+      ia_load_module       => $user_ia_load_module,
+      iterations           => $user_iterations,
+      key_membership       => $user_key_membership,
+      keys                 => $user_keys,
+      loginclass           => $user_loginclass,
+      managehome           => false,
+      membership           => $user_membership,
+      password             => $user_password,
+      password_max_age     => $user_password_max_age,
+      password_min_age     => $user_password_min_age,
+      profile_membership   => $user_profile_membership,
+      profiles             => $user_profiles,
+      project              => $user_project,
+      provider             => $user_provider,
+      purge_ssh_keys       => $user_purge_ssh_keys,
+      role_membership      => $user_role_membership,
+      roles                => $user_roles,
+      salt                 => $user_salt,
+      shell                => $user_shell,
+      system               => $user_system,
+      uid                  => $user_uid,
+      require              => Group[$group]
+    }
+    # }}}
+    # {{{ Create home code
     if $user_managehome {
-      exec {"mkdir -p $user_home":
+      exec {"/usr/bin/mkdir -p $user_home":
         creates => $user_home,
+        require => User[$user_name],
       } ->
       file {$user_home:
-        ensure => directory,
-        owner  => $user_name,
-        group  => $primary_group,
-        mode   => $user_home_mode,
+        ensure  => directory,
+        owner   => $user_name,
+        group   => $group,
+        mode    => $user_home_mode,
+        require => [
+          User[$user_name],
+          Group[$group],
+        ]
       }
     }
-
+    # }}}
+    # {{{ SSH Key code
     $ssh_keys.each | String $key_name, Hash $key | {
+      if has_key($key, 'ensure') {
+        $key_ensure = $key['ensure']
+      } else {
+        $key_ensure = 'present'
+      }
+
+      if has_key($key, 'type') {
+        $key_type = $key['type']
+      } else {
+        $key_type = 'ssh-rsa'
+      }
+
       ssh_authorized_key { "$key_name":
-        ensure => $key['ensure'],
-        user   => $user_name,
-        type   => $key['type'],
-        key    => $key['key'],
+        ensure  => $key_ensure,
+        user    => $user_name,
+        type    => $key_type,
+        key     => $key['key'],
+        require => [
+          User[$user_name],
+          Group[$group],
+        ]
       }
     }
-
+    # }}}
+    # {{{ Dotfiles code
     if $user_dotfiles_repo {
+      if $user_dotfiles_command {
+        $sudo_user_dotfiles_command = "/usr/bin/sudo -u $user_name $user_dotfiles_command"
+        $vcs_notify  = Exec[$sudo_user_dotfiles_command]
+      }
       vcsrepo {$user_dotfiles_path:
         ensure   => latest,
         provider => $user_dotfiles_provider,
         source   => $user_dotfiles_repo,
         revision => $user_dotfiles_revision,
-        require  => File[$user_home]
+        require  => File[$user_home],
+        notify   => $vcs_notify,
       }
-    }
+      if $sudo_user_dotfiles_command {
+        exec {$sudo_user_dotfiles_command:
+          refreshonly => true,
+        }
+      }
+      # }}}
+      }
   }
 }
