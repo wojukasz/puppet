@@ -1,7 +1,7 @@
 define aurpkg (
+  $user = undef
 ) {
   # {{{ Install cower
-  notify {'entered aurpkg code': }
   exec { '/usr/bin/curl https://aur.archlinux.org/cgit/aur.git/snapshot/cower.tar.gz -o /tmp/cower.tar.gz':
     unless => '/usr/bin/pacman -Qi cower'
   } ->
@@ -12,14 +12,14 @@ define aurpkg (
   } ->
   file { '/tmp/cower':
     ensure  => directory,
-    owner   => 'packager',
+    owner   => $user,
     mode    => '0777',
     require => Exec['/usr/bin/tar xvf /tmp/cower.tar.gz']
   } ->
   exec { 'makepkg cower':
     command => '/usr/bin/makepkg',
     cwd  => '/tmp/cower',
-    user => 'packager',
+    user => $user,
     unless => '/usr/bin/pacman -Qi cower'
   } ->
   exec { '/usr/bin/pacman -U cower.*.pkg.xz':
@@ -40,14 +40,14 @@ define aurpkg (
   } ->
   file { '/tmp/pacaur':
     ensure  => directory,
-    owner   => 'packager',
+    owner   => $user,
     mode    => '0777',
     require => Exec['/usr/bin/tar xvf /tmp/pacaur.tar.gz']
   } ->
   exec { 'makepkg pacaur':
     command => '/usr/bin/makepkg',
     cwd     => '/tmp/pacaur',
-    user    => 'packager',
+    user    => $user,
     unless  => '/usr/bin/pacman -Qi pacaur'
   } ->
   exec { '/usr/bin/pacman -U pacaur.*.pkg.xz':

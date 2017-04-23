@@ -44,9 +44,6 @@ profile::desktop::desktop_packages:
     - go
     - graphviz
     - gvim
-    - i3-wm
-    - i3lock
-    - i3status
     - inkscape
     - iotop
     - keepass
@@ -71,6 +68,14 @@ profile::desktop::desktop_packages:
     - xclip
     - xdot
     - xorg-server
+    - xorg-xrandr
+
+profile::i3_desktop::packages:
+    - dmenu
+    - i3-wm
+    - i3blocks
+    - i3lock
+    - i3status
 
 profile::desktop::desktop_packages_removed:
     - dmenu-manjaro
