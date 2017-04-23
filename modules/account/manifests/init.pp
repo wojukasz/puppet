@@ -9,18 +9,6 @@ define account (
       $ensure = present
     }
 
-    if has_key($user_hash, 'group') {
-      $group = $user_hash['group']
-    } else {
-      $group = $user_name
-    }
-
-    if has_key($user_hash, 'groups') {
-      $groups = $user_hash['groups']
-    } else {
-      $groups = $user_hash['groups']
-    }
-
     if has_key($user_hash, 'user_home') {
       $user_home = $user_hash['user_home']
     } else {
@@ -99,8 +87,8 @@ define account (
       $user_forcelocal = false
     }
 
-    if has_key($user_hash, 'user_gid' ) {
-      $user_gid = $user_hash['user_gid']
+    if has_key($user_hash, 'group' ) {
+      $user_gid = $user_hash['group']
     } else {
       $user_gid = "$user_name"
     }
@@ -256,7 +244,7 @@ define account (
     }
     # }}}
     # {{{ Create primary group
-    group {$group:
+    group {$user_gid:
       ensure => present,
     }
     # }}}
@@ -272,7 +260,6 @@ define account (
       expiry               => $user_expiry,
       forcelocal           => $user_forcelocal,
       gid                  => $user_gid,
-      group                => $group,
       groups               => $user_groups,
       home                 => $user_home,
       ia_load_module       => $user_ia_load_module,
