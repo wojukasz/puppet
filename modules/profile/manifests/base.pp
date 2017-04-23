@@ -51,8 +51,9 @@ class profile::base (
     }# }}}
 
     file_line { 'wheel sudo access':
-      line => '%wheel ALL=(ALL) ALL',
-      path => '/etc/sudoers.d/wheel',
+      ensure => present,
+      line   => '%wheel ALL=(ALL) ALL',
+      path   => '/etc/sudoers.d/wheel',
     }
 
     account {'users':
