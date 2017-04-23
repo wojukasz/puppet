@@ -47,7 +47,7 @@ class profile::base (
     } ->
     exec { 'systemd-timesyncd':
       command => "/usr/bin/timedatectl set-ntp true",
-      unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronised yes\''
+      unless  => '/usr/bin/timedatectl status | /usr/bin/grep \'NTP synchronized: yes\''
     }# }}}
 
     account {'users':
