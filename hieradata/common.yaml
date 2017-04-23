@@ -26,7 +26,9 @@ profile::desktop::desktop_packages:
     - ansible
     - aria2
     - bind-tools
+    - boost
     - chromium
+    - clang
     - compton
     - dmenu
     - docker
@@ -39,6 +41,7 @@ profile::desktop::desktop_packages:
     - freemind
     - gimp
     - git
+    - go
     - graphviz
     - gvim
     - i3-wm
@@ -115,7 +118,7 @@ profile::base::user_accounts:
         dotfiles_path: /home/alan/git/dotfiles
         dotfiles_repo: https://github.com/alanjjenkins/dotfiles.git
         dotfiles_commands:
-            - /usr/bin/sudo -u alan -s /usr/bin/ln -s /home/alan/git/dotfiles/dotsyncrc /home/alan/.dotsyncrc
+            - /usr/bin/sudo -u alan -s /usr/bin/ln -sf /home/alan/git/dotfiles/dotsyncrc /home/alan/.dotsyncrc
             - /usr/bin/sudo -u alan -s /home/alan/git/dotfiles/dotsync/bin/dotsync -L
 # }}}
 

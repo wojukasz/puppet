@@ -105,8 +105,8 @@ define account (
       $user_gid = "$user_name"
     }
 
-    if has_key($user_hash, 'user_groups' ) {
-      $user_groups = $user_hash['user_groups']
+    if has_key($user_hash, 'groups' ) {
+      $user_groups = $user_hash['groups']
     } else {
       $user_groups = []
     }
@@ -153,104 +153,104 @@ define account (
       $user_membership = "minimum"
     }
 
-    if has_key($user_hash, 'user_password' ) {
-      $user_password = $user_hash['user_password']
+    if has_key($user_hash, 'password' ) {
+      $user_password = $user_hash['password']
     } else {
       $user_password = undef
     }
 
-    if has_key($user_hash, 'user_password_max_age' ) {
-      $user_password_max_age = $user_hash['user_password_max_age']
+    if has_key($user_hash, 'password_max_age' ) {
+      $user_password_max_age = $user_hash['password_max_age']
     } else {
       $user_password_max_age = undef
     }
 
-    if has_key($user_hash, 'user_password_min_age' ) {
-      $user_password_min_age = $user_hash['user_password_min_age']
+    if has_key($user_hash, 'password_min_age' ) {
+      $user_password_min_age = $user_hash['password_min_age']
     } else {
       $user_password_min_age = undef
     }
 
-    if has_key($user_hash, 'user_profile_membership' ) {
-      $user_profile_membership = $user_hash['user_profile_membership']
+    if has_key($user_hash, 'profile_membership' ) {
+      $user_profile_membership = $user_hash['profile_membership']
     } else {
       $user_profile_membership = "minimum"
     }
 
-    if has_key($user_hash, 'user_profiles' ) {
-      $user_profiles = $user_hash['user_profiles']
+    if has_key($user_hash, 'profiles' ) {
+      $user_profiles = $user_hash['profiles']
     } else {
       $user_profiles = undef
     }
 
-    if has_key($user_hash, 'user_project' ) {
-      $user_project = $user_hash['user_project']
+    if has_key($user_hash, 'project' ) {
+      $user_project = $user_hash['project']
     } else {
       $user_project = undef
     }
 
-    if has_key($user_hash, 'user_purge_ssh_keys' ) {
-      $user_purge_ssh_keys = $user_hash['user_purge_ssh_keys']
+    if has_key($user_hash, 'purge_ssh_keys' ) {
+      $user_purge_ssh_keys = $user_hash['purge_ssh_keys']
     } else {
       $user_purge_ssh_keys = false
     }
 
-    if has_key($user_hash, 'user_role_membership' ) {
-      $user_role_membership = $user_hash['user_role_membership']
+    if has_key($user_hash, 'role_membership' ) {
+      $user_role_membership = $user_hash['role_membership']
     } else {
       $user_role_membership = "minimum"
     }
 
-    if has_key($user_hash, 'user_roles' ) {
-      $user_roles = $user_hash['user_roles']
+    if has_key($user_hash, 'roles' ) {
+      $user_roles = $user_hash['roles']
     } else {
       $user_roles = undef
     }
 
-    if has_key($user_hash, 'user_salt' ) {
-      $user_salt = $user_hash['user_salt']
+    if has_key($user_hash, 'salt' ) {
+      $user_salt = $user_hash['salt']
     } else {
       $user_salt = undef
     }
 
-    if has_key($user_hash, 'user_attributes') {
-      $user_attributes = $user_hash['user_attributes']
+    if has_key($user_hash, 'attributes') {
+      $user_attributes = $user_hash['attributes']
     } else {
       $user_attributes = undef
     }
 
-    if has_key($user_hash, 'user_auth_membership') {
-      $user_auth_membership = $user_hash['user_auth_membership']
+    if has_key($user_hash, 'auth_membership') {
+      $user_auth_membership = $user_hash['auth_membership']
     } else {
       $user_auth_membership = undef
     }
 
-    if has_key($user_hash, 'user_provider') {
-      $user_provider = $user_hash['user_provider']
+    if has_key($user_hash, 'provider') {
+      $user_provider = $user_hash['provider']
     } else {
       $user_provider = undef
     }
 
-    if has_key($user_hash, 'user_dotfiles_revision') {
-      $user_dotfiles_revision = $user_hash['user_dotfiles_revision']
+    if has_key($user_hash, 'dotfiles_revision') {
+      $user_dotfiles_revision = $user_hash['dotfiles_revision']
     } else {
       $user_dotfiles_revision = undef
     }
 
-    if has_key($user_hash, 'user_shell' ) {
-      $user_shell = $user_hash['user_shell']
+    if has_key($user_hash, 'shell' ) {
+      $user_shell = $user_hash['shell']
     } else {
       $user_shell = "/bin/bash"
     }
 
-    if has_key($user_hash, 'user_system' ) {
-      $user_system = $user_hash['user_system']
+    if has_key($user_hash, 'system' ) {
+      $user_system = $user_hash['system']
     } else {
       $user_system = false
     }
 
-    if has_key($user_hash, 'user_uid' ) {
-      $user_uid = $user_hash['user_uid']
+    if has_key($user_hash, 'uid' ) {
+      $user_uid = $user_hash['uid']
     } else {
       $user_uid = undef
     }
@@ -272,6 +272,7 @@ define account (
       expiry               => $user_expiry,
       forcelocal           => $user_forcelocal,
       gid                  => $user_gid,
+      group                => $group,
       groups               => $user_groups,
       home                 => $user_home,
       ia_load_module       => $user_ia_load_module,
