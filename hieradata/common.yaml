@@ -76,7 +76,6 @@ profile::i3_desktop::packages:
     - i3blocks
     - i3lock
     - i3status
-    - termite
 
 profile::desktop::desktop_packages_removed:
     - dmenu-manjaro
