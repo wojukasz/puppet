@@ -347,6 +347,7 @@ define account (
       }
       if $user_dotfiles_commands {
         exec {$user_dotfiles_commands:
+          user        => $user_name,
           refreshonly => true,
         }
       }
