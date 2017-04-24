@@ -65,7 +65,7 @@ define aurpkg (
   }
   # }}}
   # {{{ if package not installed
-  exec { "/usr/bin/pacaur --noconfirm --noedit -S $title":
+  exec { "/usr/bin/cower --d -d $title":
     cwd         => "/home/$user",
     provider    => shell,
     environment => [
