@@ -20,9 +20,25 @@ profile::base::fallback_ntp_servers:
 # }}}
 # {{{ Desktop packages
 profile::desktop::desktop_aur_packages:
+    - asciinema
+    - awless
+    - csslint
+    - fortune-mod-vimtips
     - google-chrome
+    - keybase-bin
     - nerd-fonts-complete
+    - packer-io-git
+    - potato
+    - remmina-plugin-rdesktop
+    - slack-rdesktop
+    - tflint
+    - tmate
     - ttf-google-fonts-git
+    - unclutter-xfixes-git
+    - xboomx-snilius
+    - yamllint
+    - youtube-dl-git
+    - zathura-epub-git
 
 profile::desktop::desktop_packages:
     - ansible
@@ -34,6 +50,7 @@ profile::desktop::desktop_packages:
     - compton
     - docker
     - docker-compose
+    - debian-whois-mkpasswd
     - dos2unix
     - evince
     - f2fs-tools
