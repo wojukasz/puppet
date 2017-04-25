@@ -15,6 +15,6 @@ class profile::desktop (
 
     service { 'lightdm':
         enable  => true,
-        require => Package['lightdm']
+    #    require => Package['lightdm']
     }
 }
