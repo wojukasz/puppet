@@ -7,18 +7,18 @@ profile::base::user_accounts:
     lukas:
         ensure: present
         uid: 1000
-        password: EE26B0DD4AF7E749AA1A8EE3C10AE9923F618980772E473F8819A5D4940E0DB27AC185F8A0E1D5F84F88BC887FD67B143732C304CC5FA9AD8E6F57F50028A8FF
+        password:
         groups:
             - wheel
-        comment: Lukas Wojnicki
+        comment: Lukas
         managehome: true
         ssh__keys:
             work_key:
                 type: ssh-rsa
-                key: 
+                key: AAAAB3NzaC1yc2EAAAADAQABAAACAQDDOVeQ1qTRf8bc2h/m7h9X9EA7MxI/wzmNtzYPT0X37kW3zN/iN9grsEdUWQ630TglgXLV99tTtk2ApmeKK7WbUHhbcoiDSKSYuZSu8uYVSB1CuwI/h0Lgaq+WXZ1wLj8lmipeNI485oqGAV3Et+MfHmkAOBnkRt9kZxEAoHeR/bOCaOdw8w1am5mEer3hK7bxiHjYU/8HEdB5F47ywJqG6pBdAg4JmNHm/IelKGcD5oBBz8AvzCb7E/+PmCbjER92o528wAxOIxDkve9JIIfcN1wY/haYE42yTBRrcJ2R5BV1sYfUNaVXU14TxKR19xRG0/YurQYNJ6yciRZ4FKvh2ILANikyWC1Gn8pRkUcG7c87mcqkL1TYF6zuGUm5INl+Bzgqgi9fTKDxLFSS8sSDGm1u+4SM0w2XRGswYS7h8quhhy0XLmgsmngscXB24CkIZxoZzxvbjQyMH/pTbUavHO2TZRCuoSMdUcdvzvOFgGq5hVYKkey00Rl7tAxNONGtznQFbrXAUjcoldpEDYB6OJQD695CddFGYVun0IfLjTx1O2IzH5VQwv/01TSl1r/2+AKwQHPJmsBRh5eAlOzzYMTQvnCHyilRxgaJQodAXkw3nqggFVNnqYeB3ill00GicaaeITrCjDxEd1YgfaLoRe45QGf95piQ5gVkJMZOvw==
 
         dotfiles_path: /home/lukas/git/dotfiles
-        dotfiles_repo: https://github.com/
+        dotfiles_repo: https://github.com/wojukasz/dotfiles.git
         dotfiles_commands:
             - /usr/bin/mkdir -p /home/lukas/.config
             - /usr/bin/sudo -u lukas -s /usr/bin/ln -sf /home/lukas/git/dotfiles/dotsyncrc /home/lukas/.dotsyncrc
