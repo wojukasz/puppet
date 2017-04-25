@@ -11,7 +11,7 @@ hierarchy:
   - name: "Virtualised / Non Virtualised specific data."
     path: "virtual/%{::is_virtual}.yaml"
   - name: "Owner specific hiera nodes"
-    path: "%{::owner}/%{::hostname}.yaml"
+    path: "%{::owner}/nodes/%{::hostname}.yaml"
   - name: "Owner specific common hiera variables"
     path: "%{::owner}/common.yaml"
   - name: "Data common to all machines"
