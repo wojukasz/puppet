@@ -21,6 +21,8 @@ profile::base::fallback_ntp_servers:
 # {{{ Desktop packages
 profile::desktop::desktop_aur_packages:
     - google-chrome
+    - nerd-fonts-complete
+    - ttf-google-fonts-git
 
 profile::desktop::desktop_packages:
     - ansible
