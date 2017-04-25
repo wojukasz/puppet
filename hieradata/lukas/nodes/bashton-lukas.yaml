@@ -9,3 +9,6 @@ classes:
 
 profile::desktop::desktop_packages:
     - terminator
+    - gnome-weather
+    - gnome-tweak-tool
+    - dconf-editor
