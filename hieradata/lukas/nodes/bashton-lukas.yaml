@@ -7,3 +7,5 @@ classes:
     - profile::networkmanager
     - profile::base
 
+profile::desktop::desktop_packages:
+    - terminator
