@@ -43,6 +43,7 @@ profile::desktop::desktop_aur_packages:
 profile::desktop::desktop_packages:
     - ansible
     - aria2
+    - bash-completion
     - bind-tools
     - boost
     - chromium
@@ -94,6 +95,13 @@ profile::i3_desktop::packages:
     - i3blocks
     - i3lock
     - i3status
+
+profile::gnome_desktop::packages:
+    - gnome
+    - gnome-extra
+    # - gnome-tweak-tool
+    # - gnome-system-monitor
+    # - gnome-weather
 
 profile::desktop::desktop_packages_removed:
     - dmenu-manjaro

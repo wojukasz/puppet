@@ -1,0 +1,26 @@
+---
+profile::desktop::packager: lukas
+profile::monitor_hotplug::user: lukas
+
+# {{{ User accounts
+profile::base::user_accounts:
+    lukas:
+        ensure: present
+        uid: 1000
+        password: 
+        groups:
+            - wheel
+        comment: Lukas Wojnicki
+        managehome: true
+        ssh__keys:
+            work_key:
+                type: ssh-rsa
+                key: 
+
+        dotfiles_path: /home/lukas/git/dotfiles
+        dotfiles_repo: https://github.com/
+        dotfiles_commands:
+            - /usr/bin/mkdir -p /home/lukas/.config
+            - /usr/bin/sudo -u lukas -s /usr/bin/ln -sf /home/lukas/git/dotfiles/dotsyncrc /home/lukas/.dotsyncrc
+            - /usr/bin/sudo -u lukas -s /home/lukas/git/dotfiles/dotsync/bin/dotsync -L
+# }}}
