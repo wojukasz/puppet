@@ -1,5 +1,9 @@
 class profile::gnome_desktop (
-  $packages = undef
+  $packages = [
+    'gnome',
+    'gnome-tweak-tool',
+    'gnome-weather'
+  ]
 ) {
   package {$packages:
     ensure => latest,
