@@ -13,8 +13,8 @@ class profile::desktop (
         # user => $packager
     # }
 
-    service { 'lightdm':
-        enable  => true,
+    # service { 'lightdm':
+    #     enable  => true,
     #    require => Package['lightdm']
-    }
+    # }
 }

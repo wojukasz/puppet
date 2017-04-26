@@ -8,6 +8,7 @@ classes:
     - profile::base
 
 profile::desktop::desktop_packages:
+    - gdm
     - terminator
     - gnome-weather
     - gnome-tweak-tool

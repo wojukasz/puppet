@@ -99,9 +99,6 @@ profile::i3_desktop::packages:
 profile::gnome_desktop::packages:
     - gnome
     # - gnome-extra
-    # - gnome-tweak-tool
-    # - gnome-system-monitor
-    # - gnome-weather
 
 profile::desktop::desktop_packages_removed:
     - dmenu-manjaro
